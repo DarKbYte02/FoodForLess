@@ -1,4 +1,4 @@
-package com.ipn.mx.foodforless;
+package com.ipn.mx;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
