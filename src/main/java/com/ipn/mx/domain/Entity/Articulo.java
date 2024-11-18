@@ -1,4 +1,4 @@
-package com.ipn.mx.domain.entity;
+package com.ipn.mx.domain.Entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
@@ -43,9 +43,6 @@ public class Articulo implements Serializable {
 
     @Column(name="tiempoFinal", nullable = false)
     private Date tiempoFinal;
-
-
-
 
     //Idcategoria
     //idLugar

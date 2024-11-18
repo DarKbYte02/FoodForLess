@@ -1,4 +1,4 @@
-package com.ipn.mx.domain.entity;
+package com.ipn.mx.domain.Entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
