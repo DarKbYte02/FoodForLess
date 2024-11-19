@@ -5,7 +5,6 @@ import com.ipn.mx.domain.Entity.Articulo;
 import com.ipn.mx.domain.Service.ArticuloService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
