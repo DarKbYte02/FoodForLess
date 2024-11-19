@@ -5,6 +5,8 @@ import com.ipn.mx.domain.Repository.ArticuloRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ArticuloService {
@@ -31,6 +33,11 @@ public class ArticuloService {
     public Articulo getArticulo(Long id) {
         // Get articulo by id
         return articuloRepository.findById(id).orElse(null);
+    }
+
+    public List<Articulo> getAllArticulos() {
+        // Get all articulos
+        return articuloRepository.findAll();
     }
 
 }

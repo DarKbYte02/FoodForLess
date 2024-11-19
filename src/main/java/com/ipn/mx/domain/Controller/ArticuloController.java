@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.List;
+
 
 @RequiredArgsConstructor
 @RestController
@@ -40,4 +42,8 @@ public class ArticuloController{
         articuloService.deleteArticulo(id);
     }
 
+    @GetMapping
+    public List<Articulo> getAllArticulos(){
+        return articuloService.getAllArticulos();
+    }
 }
