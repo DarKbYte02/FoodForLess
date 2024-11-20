@@ -61,4 +61,10 @@ public class Articulo implements Serializable {
     @JsonManagedReference
     private List<Pedido> pedidos;
 
+    //Relacion con DetallePedido
+    @OneToMany(mappedBy = "articulo", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties({"articulo"})
+    @JsonManagedReference
+    private List<DetallePedido> detallePedidos;
+
 }

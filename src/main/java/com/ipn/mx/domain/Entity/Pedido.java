@@ -3,6 +3,7 @@ package com.ipn.mx.domain.Entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -35,5 +37,11 @@ public class Pedido implements Serializable {
     @JsonBackReference
     @JsonIdentityReference(alwaysAsId = true) // Serializar como id
     private Articulo articulo;
+
+    //Relacion con DetallePedido
+    @OneToMany(mappedBy = "pedido", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties({"pedido"})
+    @JsonManagedReference
+    private List<DetallePedido> detallePedidos;
 
 }

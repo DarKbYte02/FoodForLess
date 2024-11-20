@@ -3,42 +3,57 @@ package com.ipn.mx.domain.Controller;
 import com.ipn.mx.domain.Entity.DetallePedido;
 import com.ipn.mx.domain.Service.DetallePedidoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/detallePedido")
+@RequestMapping(value = "/detallePedido", produces = MediaType.APPLICATION_JSON_VALUE)
 public class DetallePedidoController {
     private final DetallePedidoService detallePedidoService;
 
     @PostMapping
-    public void createDetallePedido(@RequestBody DetallePedido detallePedido) {
-        // Create a new detallePedido
-        detallePedidoService.createDetallePedido(detallePedido);
+    public ResponseEntity<DetallePedido> createDetallePedido(@RequestBody DetallePedido detallePedido) {
+        return new ResponseEntity<>(detallePedidoService.createDetallePedido(detallePedido), HttpStatus.CREATED);
     }
 
+    // Obtener un DetallePedido por su ID
     @GetMapping("/{id}")
     public DetallePedido getDetallePedido(@PathVariable Long id) {
-        // Get detallePedido by id
         return detallePedidoService.getDetallePedido(id);
     }
 
+    // Eliminar un DetallePedido por su ID
     @DeleteMapping("/{id}")
     public void deleteDetallePedido(@PathVariable Long id) {
-        // Delete an existing detallePedido
         detallePedidoService.deleteDetallePedido(id);
     }
 
+    // Obtener todos los DetallePedidos
     @GetMapping
-    public List<DetallePedido> getDetallePedidos(){
+    public List<DetallePedido> getDetallePedidos() {
         return detallePedidoService.getDetallePedidos();
     }
 
+    // Actualizar un DetallePedido existente
     @PutMapping
     public DetallePedido updateDetallePedido(@RequestBody DetallePedido detallePedido) {
-        // Update a detallePedido
         return detallePedidoService.updateDetallePedido(detallePedido);
+    }
+
+    // Obtener todos los DetallePedidos de un Pedido específico
+    @GetMapping("/pedido/{idPedido}")
+    public List<DetallePedido> getDetallePedidosByPedido(@PathVariable Long idPedido) {
+        return detallePedidoService.getDetallePedidosByPedido(idPedido);
+    }
+
+    // Obtener todos los DetallePedidos de un Articulo específico
+    @GetMapping("/articulo/{idArticulo}")
+    public List<DetallePedido> getDetallePedidosByArticulo(@PathVariable Long idArticulo) {
+        return detallePedidoService.getDetallePedidosByArticulo(idArticulo);
     }
 }
