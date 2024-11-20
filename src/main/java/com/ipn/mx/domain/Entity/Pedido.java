@@ -1,5 +1,8 @@
 package com.ipn.mx.domain.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,5 +28,12 @@ public class Pedido implements Serializable {
     @Column(name="estadoPedido", nullable = false)
     private int estadoPedido;
 
+    //IdArticulo
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="idArticulo")
+    @JsonIgnoreProperties({"pedidos"})
+    @JsonBackReference
+    @JsonIdentityReference(alwaysAsId = true) // Serializar como id
+    private Articulo articulo;
 
 }
