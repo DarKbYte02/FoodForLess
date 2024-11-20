@@ -2,6 +2,7 @@ package com.ipn.mx.domain.Service;
 
 import com.ipn.mx.domain.Entity.Categoria;
 import com.ipn.mx.domain.Repository.CategoriaRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class CategoriaService {
     private final CategoriaRepository categoriaRepository;
 

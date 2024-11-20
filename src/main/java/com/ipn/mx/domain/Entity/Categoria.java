@@ -1,5 +1,7 @@
 package com.ipn.mx.domain.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -8,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -26,5 +29,10 @@ public class Categoria implements Serializable {
 
     @Column(name="imagenCategoria",length = 250, nullable = false)
     private String imagenCategoria;
+
+    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties({"categoria"})
+    @JsonManagedReference
+    private List<Articulo> articulos;
 
 }

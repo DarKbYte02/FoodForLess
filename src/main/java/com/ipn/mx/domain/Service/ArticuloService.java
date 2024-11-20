@@ -1,7 +1,9 @@
 package com.ipn.mx.domain.Service;
 
 import com.ipn.mx.domain.Entity.Articulo;
+import com.ipn.mx.domain.Entity.Categoria;
 import com.ipn.mx.domain.Repository.ArticuloRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ArticuloService {
     private final ArticuloRepository articuloRepository;
 
@@ -32,12 +35,17 @@ public class ArticuloService {
 
     public Articulo getArticulo(Long id) {
         // Get articulo by id
-        return articuloRepository.findById(id).orElse(null);
+        return articuloRepository.findArticuloWithCategoria(id);
     }
 
     public List<Articulo> getAllArticulos() {
         // Get all articulos
-        return articuloRepository.findAll();
+        return articuloRepository.findAllArticulosWithCategoria();
+    }
+
+    public List<Articulo> getArticulosByCategoria(Long idCategoria) {
+        // Get all articulos by categoria
+        return articuloRepository.findByCategoriaIdCategoria(idCategoria);
     }
 
 }

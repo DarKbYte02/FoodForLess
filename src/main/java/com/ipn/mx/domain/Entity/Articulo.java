@@ -1,5 +1,8 @@
 package com.ipn.mx.domain.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -45,8 +48,11 @@ public class Articulo implements Serializable {
     private Date tiempoFinal;
 
     //Idcategoria
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="idCategoria")
+    @JsonIgnoreProperties({"articulos"})
+    @JsonBackReference
+    private Categoria categoria;
     //idLugar
-
-
 
 }

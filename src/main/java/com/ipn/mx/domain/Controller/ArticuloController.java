@@ -2,6 +2,7 @@ package com.ipn.mx.domain.Controller;
 
 
 import com.ipn.mx.domain.Entity.Articulo;
+import com.ipn.mx.domain.Entity.Categoria;
 import com.ipn.mx.domain.Service.ArticuloService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -44,5 +45,11 @@ public class ArticuloController{
     @GetMapping
     public List<Articulo> getAllArticulos(){
         return articuloService.getAllArticulos();
+    }
+
+    @GetMapping("/categoria/{idCategoria}")
+    public List<Articulo> getArticulosByCategoria(@PathVariable Long idCategoria) {
+        // Get all articulos by categoria
+        return articuloService.getArticulosByCategoria(idCategoria);
     }
 }
