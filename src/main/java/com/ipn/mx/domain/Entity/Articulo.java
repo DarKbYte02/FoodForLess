@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -53,6 +54,11 @@ public class Articulo implements Serializable {
     @JsonIgnoreProperties({"articulos"})
     @JsonBackReference
     private Categoria categoria;
-    //idLugar
+
+    //Relacion con Pedido
+    @OneToMany(mappedBy = "articulo", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties({"articulo"})
+    @JsonManagedReference
+    private List<Pedido> pedidos;
 
 }

@@ -1,5 +1,6 @@
 package com.ipn.mx.domain.Service;
 
+import com.ipn.mx.domain.Entity.Articulo;
 import com.ipn.mx.domain.Entity.Pedido;
 import com.ipn.mx.domain.Repository.PedidoRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PedidoService {
     private final PedidoRepository pedidoRepository;
+    private final ArticuloService articuloService;
 
     public void createPedido(Pedido pedido) {
         // Create a pedido
@@ -29,11 +31,16 @@ public class PedidoService {
 
     public Pedido getPedido(Long id) {
         // Get a pedido
-        return pedidoRepository.findById(id).orElse(null);
+        return pedidoRepository.findPedidoWithArticulo(id);
     }
 
     public List<Pedido> getPedidos() {
         // Get all pedidos
-        return pedidoRepository.findAll();
+        return pedidoRepository.findAllPedidosWithArticulo();
+    }
+
+    public List<Pedido> getPedidosByArticulo(Long idArticulo) {
+        // Get all pedidos by articulo
+        return pedidoRepository.findByArticuloIdArticulo(idArticulo);
     }
 }

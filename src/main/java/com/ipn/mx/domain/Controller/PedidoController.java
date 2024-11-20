@@ -3,6 +3,8 @@ package com.ipn.mx.domain.Controller;
 import com.ipn.mx.domain.Entity.Pedido;
 import com.ipn.mx.domain.Service.PedidoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,9 +16,10 @@ public class PedidoController {
     private final PedidoService pedidoService;
 
     @PostMapping
-    public void createPedido(@RequestBody Pedido pedido) {
+    public ResponseEntity<String> createPedido(@RequestBody Pedido pedido) {
         // Create a new pedido
         pedidoService.createPedido(pedido);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Pedido creado");
     }
 
     @GetMapping("/{id}")
@@ -37,9 +40,14 @@ public class PedidoController {
         pedidoService.updatePedido(pedido);
     }
 
-    @GetMapping("/total")
+    @GetMapping
     public List<Pedido> getPedidos(){
         return pedidoService.getPedidos();
     }
 
+    @GetMapping("/articulo/{idArticulo}")
+    // Get all pedidos by articulo
+    public List<Pedido> getPedidosByArticulo(@PathVariable Long idArticulo){
+        return pedidoService.getPedidosByArticulo(idArticulo);
+    }
 }
