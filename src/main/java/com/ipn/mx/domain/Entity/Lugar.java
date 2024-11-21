@@ -2,6 +2,7 @@ package com.ipn.mx.domain.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
@@ -11,6 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -60,5 +62,10 @@ public class Lugar implements Serializable {
     @JsonIdentityReference(alwaysAsId = true) // Serializar como id
     @JsonIgnoreProperties({"lugares","pedidos"})
     private User user;
+
+    //Relacion con Articulo
+    @OneToMany(mappedBy = "lugar", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Articulo> articulos;
 
 }
