@@ -40,8 +40,8 @@ public class DetallePedidoController {
     }
 
     // Actualizar un DetallePedido existente
-    @PutMapping
-    public DetallePedido updateDetallePedido(@RequestBody DetallePedido detallePedido) {
+    @PutMapping("/{id}")
+    public DetallePedido updateDetallePedido(@PathVariable Long id, @RequestBody DetallePedido detallePedido) {
         return detallePedidoService.updateDetallePedido(detallePedido);
     }
 
@@ -55,5 +55,11 @@ public class DetallePedidoController {
     @GetMapping("/articulo/{idArticulo}")
     public List<DetallePedido> getDetallePedidosByArticulo(@PathVariable Long idArticulo) {
         return detallePedidoService.getDetallePedidosByArticulo(idArticulo);
+    }
+
+    @DeleteMapping("/pedido/{idPedido}")
+    public ResponseEntity<Void> deleteDetallesByPedido(@PathVariable Long idPedido) {
+        detallePedidoService.deleteDetallesByPedido(idPedido);
+        return ResponseEntity.noContent().build();
     }
 }

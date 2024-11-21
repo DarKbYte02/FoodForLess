@@ -16,12 +16,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class DetallePedidoService {
     private final DetallePedidoRepository detallePedidoRepository;
-    private final PedidoRepository pedidoRepository;
-    private final ArticuloRepository articuloRepository;
 
-    /**
-     * Crea un DetallePedido si el Pedido y Articulo existen
-     */
     public DetallePedido createDetallePedido(DetallePedido detallePedido) {
         return detallePedidoRepository.save(detallePedido);
     }
@@ -74,5 +69,9 @@ public class DetallePedidoService {
      */
     public List<DetallePedido> getDetallePedidosByArticulo(Long idArticulo) {
         return detallePedidoRepository.findByArticuloIdArticulo(idArticulo);
+    }
+
+    public void deleteDetallesByPedido(Long idPedido) {
+        detallePedidoRepository.deleteByPedidoIdPedido(idPedido);
     }
 }
