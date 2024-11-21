@@ -36,9 +36,12 @@ public class LugarController {
         return lugarService.getLugares();
     }
 
-    @PutMapping
-    public void updateLugar(@RequestBody Lugar lugar) {
+    @PutMapping("/{id}")
+    public void updateLugar(@PathVariable Long id, @RequestBody Lugar lugar) {
         // Update a lugar
+        if (!id.equals(lugar.getIdLugar())) {
+            throw new IllegalArgumentException("El ID de la URL y el ID del cuerpo no coinciden");
+        }
         lugarService.updateLugar(lugar);
     }
 

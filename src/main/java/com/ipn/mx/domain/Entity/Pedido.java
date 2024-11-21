@@ -32,9 +32,8 @@ public class Pedido implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="idUser")
     @JsonIdentityReference(alwaysAsId = true) // Serializar como id
-    @JsonIgnoreProperties({"pedidos"})
+    @JsonIgnoreProperties({"nombreUsuario","contrsenaUsuario","correoUsuario","imagenUsuario"})
     private User user;
-
 
     //IdArticulo
 /*    @ManyToOne(fetch = FetchType.LAZY)
@@ -56,4 +55,14 @@ public class Pedido implements Serializable {
 //                .collect(Collectors.toList());
 //    }
 
+    @OneToMany(mappedBy = "pedido", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Review> reviews;
+
+    //idLugar
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="idLugar")
+    @JsonIdentityReference(alwaysAsId = true) // Serializar como id
+    @JsonIgnoreProperties({"idUser","nombreLugar","direccionLugar","descripcionLugar","imagenLugar","latitudLugar","longitudLugar","horaApertura","horaCierre","calificacionTotal","user"})
+    private Lugar lugar;
 }

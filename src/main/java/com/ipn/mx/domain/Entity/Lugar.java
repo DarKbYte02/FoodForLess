@@ -57,15 +57,25 @@ public class Lugar implements Serializable {
     private double calificacionTotal;
 
     //IdUsuario
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="idUser")
     @JsonIdentityReference(alwaysAsId = true) // Serializar como id
-    @JsonIgnoreProperties({"lugares","pedidos"})
+    @JsonIgnoreProperties({"nombreUsuario","contrasenaUsuario","correoUsuario","imagenUsuario"})
     private User user;
 
     //Relacion con Articulo
     @OneToMany(mappedBy = "lugar", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Articulo> articulos;
+
+    //Relacion con Review
+    @OneToMany(mappedBy = "lugar", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Review> reviews;
+
+    //Relacion con Pedido
+    @OneToMany(mappedBy = "lugar", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Pedido> pedidos;
 
 }
