@@ -34,7 +34,7 @@ public class Categoria implements Serializable {
     //Relacion con Articulo
     @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties({"categoria"})
-    @JsonBackReference
+    @JsonManagedReference
     private List<Articulo> articulos;
 
 }

@@ -1,6 +1,7 @@
 package com.ipn.mx.domain.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
@@ -55,10 +57,22 @@ public class Articulo implements Serializable {
     @JsonBackReference
     private Categoria categoria;
 
-    //Relacion con Pedido
+/*    Relacion con Pedido
     @OneToMany(mappedBy = "articulo", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties({"articulo"})
     @JsonManagedReference
-    private List<Pedido> pedidos;
+    private List<Pedido> pedidos;*/
+
+    //Relacion con DetallePedido
+    @OneToMany(mappedBy = "articulo", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties({"detallePedidos"})
+    private List<DetallePedido> detallePedidos;
+    @JsonIgnore
+    public List<Pedido> getPedidos() {
+        return detallePedidos.stream()
+                .map(DetallePedido::getPedido)
+                .distinct()
+                .collect(Collectors.toList());
+    }
 
 }

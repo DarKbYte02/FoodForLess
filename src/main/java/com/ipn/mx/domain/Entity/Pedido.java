@@ -1,8 +1,6 @@
 package com.ipn.mx.domain.Entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
@@ -29,11 +29,24 @@ public class Pedido implements Serializable {
     private int estadoPedido;
 
     //IdArticulo
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="idArticulo")
-    @JsonIgnoreProperties({"pedidos"})
-    @JsonBackReference
-    @JsonIdentityReference(alwaysAsId = true) // Serializar como id
-    private Articulo articulo;
+/*    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name="idArticulo")
+//    @JsonIgnoreProperties({"pedidos"})
+//    @JsonBackReference
+//    @JsonIdentityReference(alwaysAsId = true) // Serializar como id
+      private Articulo articulo;*/
+
+    //Relacion con DetallePedido
+    @OneToMany(mappedBy = "pedido", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties({"pedido"})
+    private List<DetallePedido> detallePedidos;
+
+    @JsonIgnore
+    public List<Articulo> getArticulo() {
+        return detallePedidos.stream()
+                .map(DetallePedido::getArticulo)
+                .distinct()
+                .collect(Collectors.toList());
+    }
 
 }

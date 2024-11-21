@@ -31,16 +31,13 @@ public class PedidoService {
 
     public Pedido getPedido(Long id) {
         // Get a pedido
-        return pedidoRepository.findPedidoWithArticulo(id);
+        return pedidoRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Pedido no encontrado"));
     }
 
     public List<Pedido> getPedidos() {
         // Get all pedidos
-        return pedidoRepository.findAllPedidosWithArticulo();
+        return pedidoRepository.findAll();
     }
 
-    public List<Pedido> getPedidosByArticulo(Long idArticulo) {
-        // Get all pedidos by articulo
-        return pedidoRepository.findByArticuloIdArticulo(idArticulo);
-    }
 }

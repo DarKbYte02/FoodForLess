@@ -45,9 +45,4 @@ public class PedidoController {
         return pedidoService.getPedidos();
     }
 
-    @GetMapping("/articulo/{idArticulo}")
-    // Get all pedidos by articulo
-    public List<Pedido> getPedidosByArticulo(@PathVariable Long idArticulo){
-        return pedidoService.getPedidosByArticulo(idArticulo);
-    }
 }
