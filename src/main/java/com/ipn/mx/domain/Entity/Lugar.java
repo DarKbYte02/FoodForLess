@@ -1,5 +1,8 @@
 package com.ipn.mx.domain.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -51,5 +54,11 @@ public class Lugar implements Serializable {
     @Column(name="calificacionTotal", nullable = false)
     private double calificacionTotal;
 
+    //IdUsuario
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="idUser")
+    @JsonIdentityReference(alwaysAsId = true) // Serializar como id
+    @JsonIgnoreProperties({"lugares","pedidos"})
+    private User user;
 
 }

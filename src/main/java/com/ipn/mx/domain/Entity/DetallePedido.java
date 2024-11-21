@@ -1,8 +1,6 @@
 package com.ipn.mx.domain.Entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,15 +27,13 @@ public class DetallePedido implements Serializable {
     //IdArticulo
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="idArticulo")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler","detallePedidos"})
+    @JsonIgnore
     private Articulo articulo;
 
     //IdPedido
-    @Getter
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="idPedido")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler","detallePedidos"})
+    @JsonIgnore
     private Pedido pedido;
-
 
 }

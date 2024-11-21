@@ -6,6 +6,7 @@ import com.ipn.mx.domain.Entity.Pedido;
 import com.ipn.mx.domain.Repository.ArticuloRepository;
 import com.ipn.mx.domain.Repository.DetallePedidoRepository;
 import com.ipn.mx.domain.Repository.PedidoRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class DetallePedidoService {
     private final DetallePedidoRepository detallePedidoRepository;
 

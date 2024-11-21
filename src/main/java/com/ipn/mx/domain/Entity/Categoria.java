@@ -1,6 +1,7 @@
 package com.ipn.mx.domain.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -33,8 +34,7 @@ public class Categoria implements Serializable {
 
     //Relacion con Articulo
     @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties({"categoria"})
-    @JsonManagedReference
+    @JsonIgnore
     private List<Articulo> articulos;
 
 }
