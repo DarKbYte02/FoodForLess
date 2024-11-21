@@ -3,6 +3,7 @@ package com.ipn.mx.domain.Service;
 import com.ipn.mx.domain.Entity.Articulo;
 import com.ipn.mx.domain.Entity.Pedido;
 import com.ipn.mx.domain.Repository.PedidoRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class PedidoService {
     private final PedidoRepository pedidoRepository;
     private final ArticuloService articuloService;

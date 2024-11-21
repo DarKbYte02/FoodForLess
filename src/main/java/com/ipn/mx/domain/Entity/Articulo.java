@@ -1,9 +1,6 @@
 package com.ipn.mx.domain.Entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -53,8 +50,8 @@ public class Articulo implements Serializable {
     //Idcategoria
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="idCategoria")
-    @JsonIgnoreProperties({"articulos"})
-    @JsonBackReference
+    @JsonIdentityReference(alwaysAsId = true) // Serializar como id
+    @JsonIgnoreProperties({"articulos","categoria"})
     private Categoria categoria;
 
 /*    Relacion con Pedido
@@ -65,14 +62,13 @@ public class Articulo implements Serializable {
 
     //Relacion con DetallePedido
     @OneToMany(mappedBy = "articulo", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties({"detallePedidos"})
-    private List<DetallePedido> detallePedidos;
     @JsonIgnore
-    public List<Pedido> getPedidos() {
-        return detallePedidos.stream()
-                .map(DetallePedido::getPedido)
-                .distinct()
-                .collect(Collectors.toList());
-    }
+    private List<DetallePedido> detallePedidos;
+//    public List<Pedido> getPedidos() {
+//        return detallePedidos.stream()
+//                .map(DetallePedido::getPedido)
+//                .distinct()
+//                .collect(Collectors.toList());
+//    }
 
 }

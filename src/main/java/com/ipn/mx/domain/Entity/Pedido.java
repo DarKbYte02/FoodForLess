@@ -28,6 +28,14 @@ public class Pedido implements Serializable {
     @Column(name="estadoPedido", nullable = false)
     private int estadoPedido;
 
+   //IdUsuario
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="idUser")
+    @JsonIdentityReference(alwaysAsId = true) // Serializar como id
+    @JsonIgnoreProperties({"pedidos"})
+    private User user;
+
+
     //IdArticulo
 /*    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name="idArticulo")
@@ -38,15 +46,14 @@ public class Pedido implements Serializable {
 
     //Relacion con DetallePedido
     @OneToMany(mappedBy = "pedido", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties({"pedido"})
+    @JsonIgnore
     private List<DetallePedido> detallePedidos;
 
-    @JsonIgnore
-    public List<Articulo> getArticulo() {
-        return detallePedidos.stream()
-                .map(DetallePedido::getArticulo)
-                .distinct()
-                .collect(Collectors.toList());
-    }
+//    public List<Articulo> getArticulo() {
+//        return detallePedidos.stream()
+//                .map(DetallePedido::getArticulo)
+//                .distinct()
+//                .collect(Collectors.toList());
+//    }
 
 }
