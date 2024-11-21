@@ -51,14 +51,14 @@ public class Articulo implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="idCategoria")
     @JsonIdentityReference(alwaysAsId = true) // Serializar como id
-    @JsonIgnoreProperties({"articulos","categoria"})
+    @JsonIgnoreProperties({"articulos","nombreCategoria","imagenCategoria"})
     private Categoria categoria;
 
     //IdLugar
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="idLugar")
     @JsonIdentityReference(alwaysAsId = true) // Serializar como id
-    @JsonIgnoreProperties({"articulos","lugar"})
+    @JsonIgnoreProperties({"nombreLugar, direccionLugar, descripcionLugar, imagenLugar, latitudLugar, longitudLugar, horaApertura, horaCierre, calificacionTotal"})
     private Lugar lugar;
 
 /*    Relacion con Pedido
