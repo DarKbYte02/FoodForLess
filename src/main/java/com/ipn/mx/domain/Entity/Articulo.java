@@ -78,4 +78,5 @@ public class Articulo implements Serializable {
 //                .collect(Collectors.toList());
 //    }
 
+
 }

@@ -1,9 +1,6 @@
 package com.ipn.mx.domain.Entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -78,4 +75,8 @@ public class Lugar implements Serializable {
     @JsonIgnore
     private List<Pedido> pedidos;
 
+    @JsonSetter("user")
+    public void setUser(Long userId) {
+       this.user = new User(userId); // Aquí usas el ID para crear una nueva instancia de User
+    }
 }

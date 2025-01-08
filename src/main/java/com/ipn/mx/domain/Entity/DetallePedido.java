@@ -27,13 +27,13 @@ public class DetallePedido implements Serializable {
     //IdArticulo
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="idArticulo")
-    @JsonIgnore
+    @JsonIgnoreProperties({"nombreArticulo","descripcionArticulo","precioArticulo","imagenArticulo","tiempoInicial","tiempoFinal","categoria","lugar","stock"})
     private Articulo articulo;
-
     //IdPedido
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="idPedido")
-    @JsonIgnore
+    @JsonIgnoreProperties({"totalPedido","estadoPedido","user","reviews","lugar"})
+    @JsonIdentityReference(alwaysAsId = true) // Serializar como id
     private Pedido pedido;
 
 }

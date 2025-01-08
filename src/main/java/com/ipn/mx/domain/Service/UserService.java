@@ -1,7 +1,7 @@
 package com.ipn.mx.domain.Service;
 
 import com.ipn.mx.domain.Entity.User;
-import com.ipn.mx.domain.Repository.UserRepository;
+import com.ipn.mx.domain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +16,9 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public User getUserById(Long id){
-        return userRepository.findById(id).orElse(null);
-    }
+    public User getUserById(Long id){return userRepository.findById(id).orElse(null);}
+
+    public User getUserByCorreoUsuario(String correoUsuario){return userRepository.findByCorreoUsuario(correoUsuario);}
 
     public List<User> getAllUsers(){
         return userRepository.findAll();

@@ -3,6 +3,7 @@ package com.ipn.mx.domain.Controller;
 import com.ipn.mx.domain.Entity.Pedido;
 import com.ipn.mx.domain.Service.PedidoService;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.Hibernate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,7 +43,9 @@ public class PedidoController {
 
     @GetMapping
     public List<Pedido> getPedidos(){
-        return pedidoService.getPedidos();
+        List<Pedido> pedidos = pedidoService.getPedidos();
+        pedidos.forEach(pedido -> Hibernate.initialize(pedido.getUser()));
+        return pedidos;
     }
 
 }

@@ -2,6 +2,7 @@ package com.ipn.mx.domain.Controller;
 
 import com.ipn.mx.domain.Entity.Lugar;
 import com.ipn.mx.domain.Service.LugarService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,8 +11,10 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/lugar")
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 public class LugarController {
     private final LugarService lugarService;
+    private final com.ipn.mx.domain.Repository.LugarRepository lugarRepository;
 
     @PostMapping
     public void createLugar(@RequestBody Lugar lugar) {
@@ -42,7 +45,31 @@ public class LugarController {
         if (!id.equals(lugar.getIdLugar())) {
             throw new IllegalArgumentException("El ID de la URL y el ID del cuerpo no coinciden");
         }
-        lugarService.updateLugar(lugar);
+        Lugar existingLugar = lugarRepository.findById(lugar.getIdLugar()).orElseThrow(() -> new EntityNotFoundException("Lugar no encontrada"));
+        existingLugar.setNombreLugar(lugar.getNombreLugar());
+        existingLugar.setDescripcionLugar(lugar.getDescripcionLugar());
+        existingLugar.setImagenLugar(lugar.getImagenLugar());
+        existingLugar.setLatitudLugar(lugar.getLatitudLugar());
+        existingLugar.setLongitudLugar(lugar.getLongitudLugar());
+        existingLugar.setDireccionLugar(lugar.getDireccionLugar());
+        existingLugar.setHoraApertura(lugar.getHoraApertura());
+        existingLugar.setHoraCierre(lugar.getHoraCierre());
+        existingLugar.setCalificacionTotal(lugar.getCalificacionTotal());
+        existingLugar.setUser(lugar.getUser().getIdUser());
+        if(lugar.getArticulos() != null){
+            existingLugar.getArticulos().clear();
+            existingLugar.getArticulos().addAll(lugar.getArticulos());
+        }
+        if(lugar.getReviews() != null){
+            existingLugar.getReviews().clear();
+            existingLugar.getReviews().addAll(lugar.getReviews());
+        }
+        if(lugar.getPedidos() != null){
+            existingLugar.getPedidos().clear();
+            existingLugar.getPedidos().addAll(lugar.getPedidos());
+        }
+        lugarRepository.save(existingLugar);
+       // lugarService.updateLugar(lugar);
     }
 
 }

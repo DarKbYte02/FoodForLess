@@ -7,15 +7,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.ipn.mx.domain.Entity.MD5.getMd5;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins = "http://localhost:4200", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 public class UserController {
     private final UserService userService;
 
     @PostMapping
     public void createUser(@RequestBody User user) {
         // Create a new user
+        System.out.println(user);
         userService.saveUser(user);
     }
 
@@ -23,6 +27,19 @@ public class UserController {
     public User getUser(@PathVariable Long id) {
         // Get user by id
         return userService.getUserById(id);
+    }
+
+    @GetMapping("/correo/{correoUsuario}")
+    public User getUserByCorreoUsuario(@PathVariable String correoUsuario) {
+        // Get user by email
+        User usuario = userService.getUserByCorreoUsuario(correoUsuario);
+        return (usuario == null) ? null : User.builder()
+                .idUser(usuario.getIdUser())
+                .nombreUsuario(usuario.getNombreUsuario())
+                .correoUsuario(usuario.getCorreoUsuario())
+                .imagenUsuario(usuario.getImagenUsuario())
+                .contrasenaUsuario(getMd5(usuario.getContrasenaUsuario()))
+                .build();
     }
 
     @PutMapping("/{id}")
