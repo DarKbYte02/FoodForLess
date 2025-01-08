@@ -1,0 +1,124 @@
+.container-fluid.landing-page {
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: #FFB30B;
+    width: 100%;
+}
+
+.row.landing-row-wide {
+    min-width: 110vw;
+}
+
+.col-7.landing-col {
+    margin-left: 15%;
+    margin-top: 2%;
+}
+
+.col-3.landing-hidden {
+    overflow: hidden;
+}
+
+.hero-text {
+    font-family: 'Mada';
+    font-size: 5rem;
+    display: inline;
+    font-weight: bold;
+}
+
+.hero-text-white {
+    color: #FFFFFF;
+}
+
+.hero-text-orange {
+    color: #F17228;
+}
+
+.card.landing-card {
+    margin-left: 23.5%;
+    margin-right: 10%;
+    margin-bottom: 5%;
+}
+
+.card-header.landing-card-header {
+    font-family: 'Mada';
+    font-size: 1.3rem;
+    color: #F17228;
+}
+
+.card-body.landing-card-body {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.landing-input {
+    width: 80%;
+    font-family: 'Mada';
+    display: inline;
+}
+
+.landing-btn {
+    margin-right: 1%;
+    font-family: 'Mada';
+    min-width: 15%;
+}
+
+.section-bg-white {
+    background-color: #FFFFFF;
+}
+
+.large-title {
+    font-family: 'Mada';
+    font-size: 5rem;
+    color: #F17228;
+    display: inline;
+    font-weight: bold;
+    text-align: center;
+}
+
+.card.landing-howto {
+    width: 80%;
+    border: none;
+    background-color: #fbfaf7;
+    border-radius: 30px;
+}
+
+.card-title.landing-step-title {
+    font-family: 'Mada';
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.card-text.landing-step-text {
+    font-family: 'Mada';
+    font-size: 1.3rem;
+    text-align: center;
+    font-weight: 300; /* Light */
+}
+
+.section-bg-light {
+    background-color: #fefcf4;
+
+}
+
+.section-bg-main {
+    background-color: #FFB30B;
+    overflow: hidden;
+}
+
+.landing-highlight {
+    font-family: 'Mada';
+    font-size: 2.4rem;
+    color: #F17228;
+    text-align: center;
+}
+
+.landing-subtitle {
+    font-family: 'Mada';
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: #F17228;
+    margin-left: 15%;
+    margin-right: 15%;
+    text-align: justify;
+}

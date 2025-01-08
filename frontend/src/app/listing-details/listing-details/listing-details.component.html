@@ -1,0 +1,50 @@
+<app-header/>
+<div class="container-fluid" style="min-height: 100vh; min-width: 100vw; background-color:white;">
+    <div class="row">
+    <div class="col-6"><img src="{{articulo.imagenArticulo}}" class="card-img-top" alt="..."></div>
+    <div class="col-6" style="margin-top: 10%;">
+    <div class="card" style="width: 90%; background-color:white; margin-bottom: 5%;">
+        <div class="card-body">
+            <h5 class="card-title" style="font-family: 'Mada'; font-size: 2rem;"><strong> {{articulo.nombreArticulo}}</strong></h5>
+            <p class="card-text"style="font-family: 'Mada'; font-size: 1.3rem">{{articulo.descripcionArticulo}}</p>
+        </div>
+        <ul class="list-group list-group-flush" style="background-color: #F5F5F5;">
+            <li class="list-group-item" style="background-color: #F5F5F5;font-family: 'Mada' ">Cantidad disponible: <p style="display: inline;" class="fw-bold">{{articulo.stock}}</p></li>
+            <li class="list-group-item" style="background-color: #F5F5F5;font-family: 'Mada'">Precio por unidad: <p style="display: inline;" class="fw-bold">${{articulo.precioArticulo}}</p></li>
+            <li class="list-group-item" style="background-color: #F5F5F5;font-family: 'Mada'">Fecha de publicación: <p style="display: inline;" class="fw-bold">{{articulo.tiempoInicial}}</p></li>
+            <li class="list-group-item" style="background-color: #F5F5F5;font-family: 'Mada'">Fecha de caducación: <p style="display: inline;" class="fw-bold">{{articulo.tiempoFinal}}</p></li>
+        </ul>
+        <div class="card-body">
+            <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" style=" display: inline">
+            <input type="number" class="form-control" placeholder="Cantidad" style="margin-bottom: 2%;" min="1" max="{{articulo.stock}}" formControlName="cantidad"/>
+            <button type="submit" class="btn btn-success fw-bolder" style="min-width: 40%; margin-right: 5%; margin-left: 10%;">Apartar</button>
+        </form>
+            <button type="button" class="btn btn-danger fw-bolder" style="min-width: 40%;" (click)="goBack()" >Cancelar</button>
+        </div>
+        </div>
+
+        <img src="{{lugar.imagenLugar}}" class="img-fluid float-start" alt="..." style="max-width: 40%; border-radius: 30px; margin-right: 5%;">
+        <div class="card" style="max-width: 50%; background-color:white; border: none;">
+            <div class="card-body">
+                <h5 class="card-title" style="font-family: 'Mada'; font-size: 2rem;"><strong> {{lugar.nombreLugar}}</strong></h5>
+                <p class="card-text"style="font-family: 'Mada'; font-size: 1.3rem">                    
+                    <img src="/estrella.webp" class="img-fluid" alt="..." style="max-width: 5%;">
+                    {{lugar.calificacionTotal}}
+                </p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" style="font-family: 'Mada' ">
+                    <img src="/location.webp" width="3%" alt="Food ForLess Logo" style="display: inline; margin-right: 0.5%; margin-left: 0.5%">
+                    {{lugar.direccionLugar}}
+                </li>
+                <li class="list-group-item" style="font-family: 'Mada'">
+                    <img src="/horario.webp" width="7%" alt="Food ForLess Logo" style="display: inline; margin-right: 0.5%; margin-left: 0.5%">
+                    {{lugar.horaApertura}} a.m. - {{lugar.horaCierre}} p.m.
+                </li>
+            </ul>
+
+            </div>
+    </div>
+    </div>
+</div>
+<app-footer/>
