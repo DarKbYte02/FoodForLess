@@ -42,7 +42,7 @@
 }
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid" style="min-height: 30vh;">
     <div class="row">
         <div class="col-12">
             <div style="text-align: center;">
@@ -55,12 +55,14 @@
             <ng-container *ngFor="let offset of [0,1,2,3]">
                 <div *ngIf="(i + offset) < articulos.length && articulos[i+offset].stock > 0" class="col-3" style="display: inline-block;">
                     <div class="card" style="margin: 5%; border: none; ">
+                        <div style="min-height: 30vh; max-height: 30vh;">
                             <img src='{{articulos[i+offset].imagenArticulo}}' class="card-img-top" style="background-color: #FFFFFF; max-width: 90%;">
-                            <div class="overlay" style="position: absolute; bottom: 43%; background-color: #FFB30B; color: white; padding-top: 2.5%; padding-left: 2.5%; padding-right: 2.5%; border-radius: 5px; max-width: 60%; min-height: 14%; font: 0.7em 'Mada';">
+                            <div class="overlay" style="position: absolute; bottom: 38%; background-color: #FFB30B; color: white; padding-top: 2.5%; padding-left: 2.5%; padding-right: 2.5%; border-radius: 5px; max-width: 60%; min-height: 14%; font: 0.7em 'Mada';">
                                 <p style="display: inline; font-size: 3rem;"><strong>20</strong></p>
                                 <p style="display: inline; font-size: 1rem;"><strong>% Off</strong></p>
                             </div>
-                        <div class="card-body" style="text-align: left; margin-top: 5%;">
+                        </div>
+                        <div class="card-body" style="text-align: left; margin-top: 15%;">
                             <h5 class="card-title" style="font-size: 1.8rem; font-family: 'Mada'; color: #393939;"><strong>{{articulos[i + offset].nombreArticulo}}</strong></h5>
                             <img src="/location.webp" width="5%" alt="Food ForLess Logo" style="display: inline; margin-right: 2%; margin-left: 0.5%">
                             @for(place of lugares; track place.idLugar){
@@ -77,30 +79,5 @@
         </div>
 
     </ng-container>
-    <!-- 
-
-    <div style="display: flex; flex-wrap: wrap; gap: 1rem; padding-left: 10%; min-height: 80%; overflow-y: auto;">
-        @for(place of lugares; track place.idLugar){
-        <div class="card" style="width: 15.2rem; position: relative; margin-top: 2%; margin-bottom: 2%; height: 22rem; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-            <img src="https://www.cocinacaserayfacil.net/wp-content/uploads/2020/03/Platos-de-comida-que-pides-a-domicilio-y-puedes-hacer-en-casa.jpg" class="card-img-top" alt="...">
-            <div class="overlay" style="position: absolute; right: 10px; bottom: 55%; background-color: rgba(255, 251, 10, 1); color: rgb(9, 9, 9); padding: 5px; border-radius: 5px; width: 5rem; font: 0.7em sans-serif;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag-fill" viewBox="0 0 16 16">
-                    <path d="M2 1a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l4.586-4.586a1 1 0 0 0 0-1.414l-7-7A1 1 0 0 0 6.586 1zm4 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
-                </svg> 20% OFF
-            </div>
-            <div class="card-body" style="font: sans-serif; justify-content: space-between;">
-                <h5 class="card-title">{{ place.nombreLugar }}</h5>
-                <p class="card-text" style="font-size: 0.7em; margin: 1;">{{ place.descripcionLugar }}</p>
-                <p class="card-text" style="font-size: 0.7em; margin: 0;">{{ place.horaApertura }} - {{ place.horaCierre }}</p>
-                <p class="card-text" style="font-size: 0.7em; margin: 0;">{{ place.calificacionTotal }}</p>
-                <div style="text-align: center;">
-                    <a href="#" class="btn btn-primary" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                        Ver detalles</a>
-                </div>
-            </div>
-        </div>
-        }
-    </div>
-    -->
 </div>
 <app-footer/>

@@ -1,18 +1,17 @@
-<app-header/>
-    <div class="container-fluid">
-        <div class="row">
+<app-header/>   
+<div class="container-fluid" style="min-height: 100vh;">
+        <div class="row" style="min-height: 100%;">
             <div class="col-12" style="background-color: #F17228;">
-                @if(articulos.length > 0){
-                    <h1>{{articulos[0].articuloId}}</h1>
-                }
+                <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
+                    <h1 style="font-family: 'Mada'; color: white;"><strong>{{articulos[0].categoria.idCategoria}}</strong></h1>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
-                <app-categories></app-categories>
             </div>
             <div class="col-md-9">
             </div>
         </div>
+    </div>
 <app-footer/>
-

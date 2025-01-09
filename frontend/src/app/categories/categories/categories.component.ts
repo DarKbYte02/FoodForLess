@@ -1,4 +1,4 @@
-import { Component,inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArticuloService } from '../../services/articulo.service';
 import { Articulo } from '../../articulo';
@@ -9,19 +9,20 @@ import { FooterComponent } from '../../shared/footer/footer.component';
   selector: 'app-categories',
   imports: [HeaderComponent,FooterComponent],
   templateUrl: './categories.component.html',
-  styleUrl: './categories.component.css'
+  styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent {
-  route: ActivatedRoute = inject(ActivatedRoute);
+  private route: ActivatedRoute = inject(ActivatedRoute);
   private articuloService = inject(ArticuloService);
   categoriaID : number = 0;
-
   articulos : Articulo[] = [];
   constructor() {
-    this.categoriaID = Number(this.route.snapshot.paramMap.get('id'));
+    this.categoriaID = Number(this.route.snapshot.paramMap.get('id') ?? 0);
+    console.log(this.categoriaID);
     this.articuloService.listByCategory(this.categoriaID).subscribe((response: any) => {
       this.articulos = response as Articulo[];
       console.log(this.articulos);
     });
+
   }
 }

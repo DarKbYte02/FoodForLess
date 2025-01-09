@@ -10,4 +10,5 @@ export class Articulo{
     idCategoria: number;
     idLugar: any;
     lugar?: any;
+    categoria: any = {};
 }
