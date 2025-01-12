@@ -44,7 +44,11 @@ public class ArticuloController{
         if (!id.equals(articulo.getIdArticulo())) {
             throw new IllegalArgumentException("El ID de la URL y el ID del cuerpo no coinciden");
         }
-        articuloService.updateArticulo(articulo);
+        try {
+            articuloService.updateArticulo(articulo);
+        }catch (EntityNotFoundException e){
+            throw new EntityNotFoundException("Articulo no encontrado");
+        }
     }
 
     @DeleteMapping("/{id}")
@@ -54,7 +58,11 @@ public class ArticuloController{
             throw new EntityNotFoundException("Articulo no encontrado");
         }
         // Delete an existing articulo
-        articuloService.deleteArticulo(id);
+        try {
+            articuloService.deleteArticulo(id);
+        } catch (EntityNotFoundException e) {
+            throw new EntityNotFoundException("Articulo no encontrado");
+        }
     }
 
     @GetMapping
