@@ -23,12 +23,30 @@ public class PedidoService {
 
     public void deletePedido(Long id) {
         // Delete a pedido
+        pedidoRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Pedido no encontrado para eliminar"));
         pedidoRepository.deleteById(id);
     }
 
     public void updatePedido(Pedido pedido) {
         // Update a pedido
-        pedidoRepository.save(pedido);
+        if (pedido.getIdPedido() == null) {
+            throw new IllegalArgumentException("El ID del cuerpo no puede ser nulo");
+        }
+        Pedido existingPedido = pedidoRepository.findById(pedido.getIdPedido())
+                .orElseThrow(() -> new IllegalArgumentException("Pedido no encontrado"));
+        existingPedido.setTotalPedido(pedido.getTotalPedido());
+        existingPedido.setEstadoPedido(pedido.getEstadoPedido());
+
+        existingPedido.getDetallePedidos().clear();
+        existingPedido.getReviews().clear();
+        if (pedido.getDetallePedidos() != null) {
+            existingPedido.getDetallePedidos().addAll(pedido.getDetallePedidos());
+        }
+        if (pedido.getReviews() != null) {
+            existingPedido.getReviews().addAll(pedido.getReviews());
+        }
+        pedidoRepository.save(existingPedido);
     }
 
     public Pedido getPedido(Long id) {
