@@ -44,11 +44,11 @@ export class RegisterComponent {
             (this.registerForm.value.password?.length == 0) ? console.log("Campo de contraseña vacío"): null;
             (this.registerForm.value.name?.length == 0) ? console.log("Campo de nombre vacío"): null;
         }
-        else{
+        if(this.registerForm.value.email!.length >= 4 && this.registerForm.value.password!.length >= 4 && this.registerForm.value.name!.length >= 4){
             this.user.nombreUsuario = this.registerForm.value.name!;
             this.user.correoUsuario = this.registerForm.value.email!;
             this.user.contrasenaUsuario = this.registerForm.value.password!;
-            this.user.imagenUsuario = this.image;
+            this.user.imagenUsuario = "https://static.vecteezy.com/system/resources/thumbnails/024/983/914/small/simple-user-default-icon-free-png.png";
             this.user.idUser = 0;
             this.userServices.create(this.user).subscribe((data: any) => {
                 console.log(data);

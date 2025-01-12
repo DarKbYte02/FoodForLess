@@ -83,6 +83,7 @@ export class ProfileComponent implements OnInit {
             (data: any) => {
               
               alert('Perfil actualizado correctamente');
+              this.cookieService.set('userName', this.newUser.nombreUsuario);
               this.router.navigate(['listing']);
             },
             (error: any) => {

@@ -40,7 +40,6 @@ public class Articulo implements Serializable {
 
     @Column(name="precioArticulo", nullable = false)
     @NotNull(message = "El precio del articulo no puede ser nulo")
-    @NotBlank(message = "El precio del articulo no puede estar vacio")
     private double precioArticulo;
 
     @Column(name="imagenArticulo",length = 250, nullable = false)
