@@ -1,1 +1,54 @@
-<p>profile works!</p>
+<app-header/>
+<div class="row orange" style="overflow: hidden;">
+  <div class="col-6 text-center" style="margin-top: 5%; margin-left: 25%; max-width: 50%;">
+    <p class="title text-center"><strong>Editar Perfil</strong></p>
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="d-flex">
+          <!-- Sección izquierda: Información de la cuenta -->
+          <div class="form-left col-6">
+            <p class="textForm text-center" style="font-size: 1.2rem; color: #524e4e;">Información de tu cuenta</p>
+            <div class="form-group">
+              <label for="name" class="textForm">Nombre</label>
+              <input type="text" class="form-control" id="name" formControlName="name" />
+            </div>
+            <div class="form-group">
+              <label for="email" class="textForm">Correo</label>
+              <input type="email" class="form-control" id="email" formControlName="email" />
+            </div>
+            <div class="form-group">
+              <label for="password" class="textForm">Nueva Contraseña</label>
+              <input type="password" id="password" class="form-control" formControlName="password">
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-top: 5%; width: 100%;">Actualizar datos</button>
+          </div>
+
+          <!-- Sección derecha: Imagen de perfil -->
+          <div class="form-right col-6 text-center">
+            <p class="textForm text-center" style="font-size: 1.2rem; color: #524e4e;">Imagen de Perfil</p>
+            <div class="profile-image-container mb-3">
+              <img 
+                src="./profile.png" 
+                alt="Imagen de perfil" 
+                class="profile-image" 
+                style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;"
+              />
+            </div>
+            <div class="form-group">
+              <label for="image" class="textForm">Enlace de la Imagen</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="image" 
+                formControlName="image"
+                (input)="onImageLinkChange($event)"
+                placeholder="Introduce el enlace de la imagen"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer/>
