@@ -2,6 +2,7 @@ import { Component,inject } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from '../../services/user.service';
 import { Usuario } from '../../usuario';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -13,6 +14,7 @@ import { Usuario } from '../../usuario';
 export class HeaderComponent {
   private cookieService = inject(CookieService);
   private userService = inject(UserService);
+  private router = inject(Router);
   userId = this.cookieService.get('userId');
     cookieValue: string;
     usuario : Usuario;
@@ -37,6 +39,14 @@ export class HeaderComponent {
                 });
             */
       }
+
+    }
+
+    logOut(){
+      console.log("Logout");
+      this.cookieService.set('userId', '-1');
+      this.cookieService.set('userName', '');
+      this.router.navigate(['/']);
 
     }
 }
