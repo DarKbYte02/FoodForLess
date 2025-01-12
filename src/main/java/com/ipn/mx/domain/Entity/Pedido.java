@@ -2,6 +2,7 @@ package com.ipn.mx.domain.Entity;
 
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.io.Serializable;
@@ -21,9 +22,11 @@ public class Pedido implements Serializable {
     private Long idPedido;
 
     @Column(name="totalPedido", nullable = false)
+    @NotNull(message = "El total del pedido no puede ser nulo")
     private double totalPedido;
 
     @Column(name="estadoPedido", nullable = false)
+    @NotNull(message = "El estado del pedido no puede ser nulo")
     private int estadoPedido;
 
    //IdUsuario

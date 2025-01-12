@@ -2,6 +2,8 @@ package com.ipn.mx.domain.Entity;
 
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.io.Serializable;
@@ -19,9 +21,11 @@ public class DetallePedido implements Serializable {
     private Long idDetallePedido;
 
     @Column(name="cantidadPedido", nullable = false)
+    @NotNull(message = "La cantidad del pedido es requerida")
     private int cantidadPedido;
 
     @Column(name="precioPedido", nullable = false)
+    @NotBlank(message = "El precio del pedido es requerido")
     private double precioPedido;
 
     //IdArticulo

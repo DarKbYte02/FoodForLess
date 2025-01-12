@@ -2,6 +2,8 @@ package com.ipn.mx.domain.Entity;
 
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,6 +31,8 @@ public class Lugar implements Serializable {
 
     @Size(min=10, max=150,message = "La direccion del lugar debe tener entre 10 y 150 caracteres")
     @Column(name="direccionLugar",length = 150, nullable = false)
+    @NotBlank(message = "La direccion del lugar no puede estar vacia")
+    @NotNull(message = "La direccion del lugar no puede ser nula")
     private String direccionLugar;
 
     @Size(min=10, max=150,message = "La descripcion del lugar debe tener entre 10 y 150 caracteres")
@@ -39,15 +43,23 @@ public class Lugar implements Serializable {
     private String imagenLugar;
 
     @Column(name="latitudLugar", nullable = false)
+    @NotNull(message = "La latitud del lugar no puede ser nula")
+    @NotBlank(message = "La latitud del lugar no puede estar vacia")
     private double latitudLugar;
 
     @Column(name="longitudLugar", nullable = false)
+    @NotNull(message = "La longitud del lugar no puede ser nula")
+    @NotBlank(message = "La longitud del lugar no puede estar vacia")
     private double longitudLugar;
 
     @Column(name="horaApertura", nullable = false)
+    @NotNull(message = "La hora de apertura del lugar no puede ser nula")
+    @NotBlank(message = "La hora de apertura del lugar no puede estar vacia")
     private int horaApertura;
 
     @Column(name="horaCierre", nullable = false)
+    @NotNull(message = "La hora de cierre del lugar no puede ser nula")
+    @NotBlank(message = "La hora de cierre del lugar no puede estar vacia")
     private int horaCierre;
 
     @Column(name="calificacionTotal", nullable = false)

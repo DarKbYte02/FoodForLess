@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,6 +27,7 @@ public class Review implements Serializable {
     private Long idReview;
 
     @Column(name="calificacion", nullable = false)
+    @NotNull(message = "La calificacion del review no puede ser nula")
     private double calificacion;
 
     @Size(min=4, max=100,message = "La descripcion del review debe tener entre 4 y 100 caracteres")
