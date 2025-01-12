@@ -48,12 +48,10 @@ public class Articulo implements Serializable {
 
     @Column(name="tiempoInicial", nullable = false)
     @NotNull(message = "El tiempo inicial del articulo no puede ser nulo")
-    @Temporal(TemporalType.TIME)
     private Date tiempoInicial;
 
     @Column(name="tiempoFinal", nullable = false)
     @NotNull(message = "El tiempo final del articulo no puede ser nulo")
-    @Temporal(TemporalType.TIME)
     private Date tiempoFinal;
 
     //Idcategoria
