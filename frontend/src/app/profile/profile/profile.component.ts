@@ -5,6 +5,7 @@ import { FooterComponent } from "../../shared/footer/footer.component";
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import { Usuario } from '../../usuario';
 
 @Component({
   selector: 'app-profile',
@@ -19,6 +20,7 @@ export class ProfileComponent implements OnInit {
   user: any;
   profileForm: FormGroup;
   defaultImage: string = '/profile.png'; 
+  newUser : Usuario = new Usuario();
 
   constructor(
     private cookieService: CookieService,
@@ -67,26 +69,48 @@ export class ProfileComponent implements OnInit {
   // Manejar el envío del formulario
   onSubmit() {
     const updatedUser = this.profileForm.value;
-    updatedUser.id = this.userId;
+    this.newUser.idUser = Number(this.userId);
+    this.newUser.nombreUsuario = updatedUser.name;
+    this.newUser.correoUsuario = updatedUser.email;
+    this.newUser.contrasenaUsuario = updatedUser.password;
+    this.newUser.imagenUsuario = updatedUser.image;
 
-    if (!updatedUser.password) {
-      delete updatedUser.password;
+    if(this.newUser.contrasenaUsuario != null && this.newUser.idUser != null && this.newUser.nombreUsuario != null && this.newUser.correoUsuario != null && this.newUser.imagenUsuario != null){
+      if(this.newUser.contrasenaUsuario.length >= 4 && this.newUser.nombreUsuario.length >= 4 && this.newUser.correoUsuario.length >= 4){
+          //console.log(this.profileForm.value)
+
+          this.userService.update(this.newUser).subscribe(
+            (data: any) => {
+              
+              alert('Perfil actualizado correctamente');
+              this.router.navigate(['listing']);
+            },
+            (error: any) => {
+              alert('Error al actualizar el perfil.');
+            }
+          );
     }
-
-    this.userService.update(updatedUser).subscribe(
+  }
+  else{
+    alert('Error al actualizar el perfil');
+  }
+}
+    /*this.userService.update(updatedUser).subscribe(
       (data: any) => {
+        
         alert('Perfil actualizado correctamente');
         this.router.navigate(['listing']);
       },
       (error: any) => {
         alert('Error al actualizar el perfil.');
       }
-    );
-  }
+    );*/
+  
 
   // Manejar el cambio en el enlace de la imagen
   onImageLinkChange(event: any) {
     const imageUrl = event.target.value;
     this.profileForm.patchValue({ image: imageUrl });
   }
+
 }

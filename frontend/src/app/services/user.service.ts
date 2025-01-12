@@ -25,7 +25,7 @@ export class UserService {
         return this.http.post('http://localhost:8080/user', user);
     }
     update(user: any) {
-        return this.http.put(`http://localhost:8080/user/${user.id}`, user);
+        return this.http.put(`http://localhost:8080/user/${user.idUser}`, user);
     }
     delete(id: number) {
         return this.http.delete(`http://localhost:8080/user/${id}`);
