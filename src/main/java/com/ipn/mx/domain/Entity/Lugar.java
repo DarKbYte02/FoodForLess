@@ -89,6 +89,13 @@ public class Lugar implements Serializable {
 
     @JsonSetter("user")
     public void setUser(Long userId) {
+        if (userId==null) {
+            throw new IllegalArgumentException("El ID del usuario no puede ser nulo");
+        }
        this.user = new User(userId); // Aquí usas el ID para crear una nueva instancia de User
+    }
+
+    public Lugar(Long id) {
+        this.idLugar = id;
     }
 }

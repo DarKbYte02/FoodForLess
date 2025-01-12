@@ -81,5 +81,24 @@ public class Articulo implements Serializable {
 //                .collect(Collectors.toList());
 //    }
 
+    public Articulo(Long id) {
+        this.idArticulo = id;
+    }
+
+    @JsonSetter("categoria")
+    public void setCategoria(Long categoriaId) {
+        if (categoriaId==null) {
+            throw new IllegalArgumentException("El ID de la categoria no puede ser nulo");
+        }
+        this.categoria = new Categoria(categoriaId);
+    }
+
+    @JsonSetter("lugar")
+    public void setLugar(Long lugarId) {
+        if (lugarId==null) {
+            throw new IllegalArgumentException("El ID del lugar no puede ser nulo");
+        }
+        this.lugar = new Lugar(lugarId);
+    }
 
 }

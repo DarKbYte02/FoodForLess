@@ -66,4 +66,25 @@ public class Pedido implements Serializable {
     @JsonIdentityReference(alwaysAsId = true) // Serializar como id
     @JsonIgnoreProperties({"idUser","nombreLugar","direccionLugar","descripcionLugar","imagenLugar","latitudLugar","longitudLugar","horaApertura","horaCierre","calificacionTotal","user"})
     private Lugar lugar;
+
+    public Pedido(Long id) {
+        this.idPedido = id;
+    }
+
+    @JsonSetter("user")
+    public void setUser(Long userId) {
+        if (userId==null) {
+            throw new IllegalArgumentException("El ID del usuario no puede ser nulo");
+        }
+        this.user = new User(userId);
+    }
+
+    @JsonSetter("lugar")
+    public void setLugar(Long lugarId) {
+        if (lugarId==null) {
+            throw new IllegalArgumentException("El ID del lugar no puede ser nulo");
+        }
+        this.lugar = new Lugar(lugarId);
+    }
+
 }

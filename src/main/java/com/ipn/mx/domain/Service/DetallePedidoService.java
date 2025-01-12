@@ -67,18 +67,18 @@ public class DetallePedidoService {
     public DetallePedido updateDetallePedido(DetallePedido detallePedido) {
         DetallePedido existingDetallePedido = detallePedidoRepository.findById(detallePedido.getIdDetallePedido())
                 .orElseThrow(() -> new IllegalArgumentException("DetallePedido no encontrado para actualizar"));
-        existingDetallePedido.setCantidadPedido(detallePedido.getCantidadPedido());
-        existingDetallePedido.setPrecioPedido(detallePedido.getPrecioPedido());
-        // Eliminar solo el detalle específico de las listas, no limpiar todas
-        existingDetallePedido.getPedido().getDetallePedidos().remove(detallePedido);
-        existingDetallePedido.getArticulo().getDetallePedidos().remove(detallePedido);
-        // Actualizar el detalle de pedido con los nuevos valores
-        if (detallePedido.getPedido() != null) {
-            existingDetallePedido.setPedido(detallePedido.getPedido());
-        }
-        if (detallePedido.getArticulo() != null) {
-            existingDetallePedido.setArticulo(detallePedido.getArticulo());
-        }
+//        existingDetallePedido.setCantidadPedido(detallePedido.getCantidadPedido());
+//        existingDetallePedido.setPrecioPedido(detallePedido.getPrecioPedido());
+//        // Eliminar solo el detalle específico de las listas, no limpiar todas
+//        existingDetallePedido.getPedido().getDetallePedidos().remove(detallePedido);
+//        existingDetallePedido.getArticulo().getDetallePedidos().remove(detallePedido);
+//        // Actualizar el detalle de pedido con los nuevos valores
+//        if (detallePedido.getPedido() != null) {
+//            existingDetallePedido.setPedido(detallePedido.getPedido());
+//        }
+//        if (detallePedido.getArticulo() != null) {
+//            existingDetallePedido.setArticulo(detallePedido.);
+//        }
         return detallePedidoRepository.save(existingDetallePedido);
     }
 

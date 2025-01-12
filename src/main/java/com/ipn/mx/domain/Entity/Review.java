@@ -1,9 +1,6 @@
 package com.ipn.mx.domain.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -58,4 +55,27 @@ public class Review implements Serializable {
     @JsonIgnoreProperties({"idLugar","idUser","totalPedido","estadoPedido"})
     private Pedido pedido;
 
+    @JsonSetter("lugar")
+    public void setLugar(Long lugarId) {
+        if (lugarId==null) {
+            throw new IllegalArgumentException("El ID del lugar no puede ser nulo");
+        }
+        this.lugar = new Lugar(lugarId);
+    }
+
+    @JsonSetter("user")
+    public void setUser(Long userId) {
+        if (userId==null) {
+            throw new IllegalArgumentException("El ID del usuario no puede ser nulo");
+        }
+        this.user = new User(userId);
+    }
+
+    @JsonSetter("pedido")
+    public void setPedido(Long pedidoId) {
+        if (pedidoId==null) {
+            throw new IllegalArgumentException("El ID del pedido no puede ser nulo");
+        }
+        this.pedido = new Pedido(pedidoId);
+    }
 }

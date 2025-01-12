@@ -40,4 +40,19 @@ public class DetallePedido implements Serializable {
     @JsonIdentityReference(alwaysAsId = true) // Serializar como id
     private Pedido pedido;
 
+    @JsonSetter("articulo")
+    public void setArticulo(Long articuloId) {
+        if (articuloId==null) {
+            return;
+        }
+        this.articulo = new Articulo(articuloId);
+    }
+
+    @JsonSetter("pedido")
+    public void setPedido(Long pedidoId) {
+        if (pedidoId==null) {
+            return;
+        }
+        this.pedido = new Pedido(pedidoId);
+    }
 }

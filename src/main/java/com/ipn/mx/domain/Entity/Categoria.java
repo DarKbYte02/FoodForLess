@@ -38,4 +38,8 @@ public class Categoria implements Serializable {
     @JsonIgnore
     private List<Articulo> articulos;
 
+    public Categoria(Long idCategoria) {
+        this.idCategoria = idCategoria;
+    }
+
 }
