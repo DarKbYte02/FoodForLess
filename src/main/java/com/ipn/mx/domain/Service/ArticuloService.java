@@ -5,6 +5,7 @@ import com.ipn.mx.domain.Entity.Categoria;
 import com.ipn.mx.domain.Repository.ArticuloRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional
+@Slf4j
 public class ArticuloService {
     private final ArticuloRepository articuloRepository;
 

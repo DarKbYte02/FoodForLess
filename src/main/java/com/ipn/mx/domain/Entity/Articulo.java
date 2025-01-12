@@ -2,6 +2,8 @@ package com.ipn.mx.domain.Entity;
 
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,13 +13,12 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
+@Entity 
 @Table(name="Articulo",schema = "public")
 public class Articulo implements Serializable {
     @Id
@@ -26,9 +27,11 @@ public class Articulo implements Serializable {
 
     @Size(min=4, max=150,message = "El nombre del articulo debe tener entre 4 y 150 caracteres")
     @Column(name="nombreArticulo",length = 150, nullable = false)
+    @NotNull(message = "El nombre del articulo no puede ser nulo")
     private String nombreArticulo;
 
     @Column(name="stock", nullable = false)
+    @NotNull(message = "El stock del articulo no puede ser nulo")
     private int stock;
 
     @Size(min=4, max=150,message = "La descripcion del articulo debe tener entre 4 y 150 caracteres")
@@ -36,15 +39,21 @@ public class Articulo implements Serializable {
     private String descripcionArticulo;
 
     @Column(name="precioArticulo", nullable = false)
+    @NotNull(message = "El precio del articulo no puede ser nulo")
+    @NotBlank(message = "El precio del articulo no puede estar vacio")
     private double precioArticulo;
 
     @Column(name="imagenArticulo",length = 250, nullable = false)
     private String imagenArticulo;
 
     @Column(name="tiempoInicial", nullable = false)
+    @NotNull(message = "El tiempo inicial del articulo no puede ser nulo")
+    @Temporal(TemporalType.TIME)
     private Date tiempoInicial;
 
     @Column(name="tiempoFinal", nullable = false)
+    @NotNull(message = "El tiempo final del articulo no puede ser nulo")
+    @Temporal(TemporalType.TIME)
     private Date tiempoFinal;
 
     //Idcategoria
@@ -60,12 +69,6 @@ public class Articulo implements Serializable {
     @JsonIdentityReference(alwaysAsId = true) // Serializar como id
     @JsonIgnoreProperties({"nombreLugar, direccionLugar, descripcionLugar, imagenLugar, latitudLugar, longitudLugar, horaApertura, horaCierre, calificacionTotal"})
     private Lugar lugar;
-
-/*    Relacion con Pedido
-    @OneToMany(mappedBy = "articulo", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties({"articulo"})
-    @JsonManagedReference
-    private List<Pedido> pedidos;*/
 
     //Relacion con DetallePedido
     @OneToMany(mappedBy = "articulo", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)

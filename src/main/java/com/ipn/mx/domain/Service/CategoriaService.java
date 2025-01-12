@@ -19,14 +19,6 @@ public class CategoriaService {
         categoriaRepository.save(categoria);
     }
 
-    public void updateCategoria(Categoria categoria) {
-        // Update an existing categoria
-        if(categoria.getIdCategoria() == null) {
-            throw new IllegalArgumentException("El ID del cuerpo no puede ser nulo");
-        }
-        categoriaRepository.save(categoria);
-    }
-
     public void deleteCategoria(Long id) {
         // Delete an existing categoria
         categoriaRepository.deleteById(id);

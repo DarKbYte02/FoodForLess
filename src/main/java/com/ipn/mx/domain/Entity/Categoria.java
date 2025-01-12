@@ -1,10 +1,9 @@
 package com.ipn.mx.domain.Entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,6 +25,8 @@ public class Categoria implements Serializable {
     private Long idCategoria;
 
     @Size(min=4, max=150,message = "El nombre de la categoria debe tener entre 4 y 150 caracteres")
+    @NotEmpty(message = "El nombre de la categoria no puede estar vacio")
+    @NotNull(message = "El nombre de la categoria no puede ser nulo")
     @Column(name="nombreCategoria",length = 150, nullable = false)
     private String nombreCategoria;
 
