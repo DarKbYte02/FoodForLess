@@ -1,7 +1,7 @@
 package com.ipn.mx.domain.Service;
 
 import com.ipn.mx.domain.Entity.User;
-import com.ipn.mx.domain.repository.UserRepository;
+import com.ipn.mx.domain.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
