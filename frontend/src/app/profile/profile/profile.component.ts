@@ -17,7 +17,7 @@ import { Usuario } from '../../usuario';
 })
 export class ProfileComponent implements OnInit {
   userId: string = '';
-  user: any;
+  user: any = {};
   profileForm: FormGroup;
   defaultImage: string = '/profile.png'; 
   newUser : Usuario = new Usuario();
