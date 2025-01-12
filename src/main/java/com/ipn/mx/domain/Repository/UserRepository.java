@@ -1,4 +1,4 @@
-package com.ipn.mx.domain.repository;
+package com.ipn.mx.domain.Repository;
 
 import com.ipn.mx.domain.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
