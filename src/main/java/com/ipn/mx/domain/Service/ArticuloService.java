@@ -42,11 +42,12 @@ public class ArticuloService {
         if(articulo.getDetallePedidos() != null){
             existingArticulo.getDetallePedidos().addAll(articulo.getDetallePedidos());
         }
-        articuloRepository.save(articulo);
+        articuloRepository.save(existingArticulo);
     }
 
     public void deleteArticulo(Long id) {
         // Delete an existing articulo
+
         try {
             articuloRepository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
