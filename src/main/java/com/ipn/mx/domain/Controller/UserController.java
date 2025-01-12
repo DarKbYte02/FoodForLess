@@ -48,7 +48,26 @@ public class UserController {
         if (!id.equals(user.getIdUser())) {
             throw new IllegalArgumentException("El ID de la URL y el ID del cuerpo no coinciden");
         }
-        userService.updateUser(user);
+        User existingUser = userService.getUserById(id);
+        existingUser.setNombreUsuario(user.getNombreUsuario());
+        existingUser.setCorreoUsuario(user.getCorreoUsuario());
+        existingUser.setContrasenaUsuario(user.getContrasenaUsuario());
+        existingUser.setImagenUsuario(user.getImagenUsuario());
+        if(user.getLugares() != null) {
+
+            existingUser.getLugares().clear();
+            existingUser.getLugares().addAll(user.getLugares());
+            user.getLugares().clear();
+        }
+        if(user.getPedidos() != null){
+            existingUser.getPedidos().clear();
+            existingUser.getPedidos().addAll(user.getPedidos());
+        }
+        if(user.getReviews() != null){
+            existingUser.getReviews().clear();
+            existingUser.getReviews().addAll(user.getReviews());
+        }
+        userService.saveUser(existingUser);
     }
 
     @DeleteMapping("/{id}")
