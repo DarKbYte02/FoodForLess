@@ -37,7 +37,6 @@ public class PedidoService {
                 .orElseThrow(() -> new IllegalArgumentException("Pedido no encontrado"));
         existingPedido.setTotalPedido(pedido.getTotalPedido());
         existingPedido.setEstadoPedido(pedido.getEstadoPedido());
-
         existingPedido.getDetallePedidos().clear();
         existingPedido.getReviews().clear();
         if (pedido.getDetallePedidos() != null) {

@@ -3,6 +3,7 @@ package com.ipn.mx.domain.Controller;
 import com.ipn.mx.domain.Entity.User;
 import com.ipn.mx.domain.Service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public void createUser(@RequestBody User user) {
         // Create a new user
         System.out.println(user);
@@ -24,12 +26,14 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public User getUser(@PathVariable Long id) {
         // Get user by id
         return userService.getUserById(id);
     }
 
     @GetMapping("/correo/{correoUsuario}")
+    @ResponseStatus(HttpStatus.OK)
     public User getUserByCorreoUsuario(@PathVariable String correoUsuario) {
         // Get user by email
         User usuario = userService.getUserByCorreoUsuario(correoUsuario);
@@ -43,6 +47,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public void updateUser(@PathVariable Long id, @RequestBody User user) {
         // Update an existing user
         if (!id.equals(user.getIdUser())) {
@@ -71,12 +76,14 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable Long id) {
         // Delete an existing user
         userService.deleteUser(id);
     }
 
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
