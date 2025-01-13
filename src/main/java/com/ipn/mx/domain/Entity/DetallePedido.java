@@ -45,7 +45,7 @@ public class DetallePedido implements Serializable {
         if (articuloId==null) {
             return;
         }
-        this.articulo = new Articulo(articuloId);
+        this.articulo = articuloId!=null ? Articulo.builder().idArticulo(articuloId).build() : null;
     }
 
     @JsonSetter("pedido")
@@ -53,6 +53,6 @@ public class DetallePedido implements Serializable {
         if (pedidoId==null) {
             return;
         }
-        this.pedido = new Pedido(pedidoId);
+        this.pedido = pedidoId!=null ? Pedido.builder().idPedido(pedidoId).build() : null;
     }
 }
