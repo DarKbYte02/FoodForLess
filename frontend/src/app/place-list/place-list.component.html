@@ -6,6 +6,7 @@
     </div>
 @if(categorias.length > 0; ){
     <div id="carouselExample" class="carousel slide">
+        <div class="container-fluid" style="max-height: 50%;">
         <div class="row">
             <div class="col-10" style="margin-left: 9.5%;">
         <div class="carousel-inner">
@@ -14,7 +15,7 @@
                     <ng-container *ngFor="let offset of [0,1,2,3]">
                         <div *ngIf="(i + offset) < categorias.length" class="w-25" style="display: inline-block;">
                             <div class="card" style="margin: 5%; background-color: #FFB30B; border: none; display: inline;">
-                                    <a [routerLink]="['/categories',categorias[i+offset].idCategoria]"><img src='{{categorias[i+offset].imagenCategoria}}' class="card-img-top" style="background-color: #FFB30B; max-width: 90%;"> </a>
+                                    <a [routerLink]="['/categories',categorias[i+offset].idCategoria]"><img src='{{categorias[i+offset].imagenCategoria}}' class="card-img-top" style="background-color: #FFB30B;  max-height: 20vh; max-width: 15vw; width: auto; object-fit: fill; display: block; margin-left: auto; margin-right: auto;"> </a>
                                 <div class="card-body" >
                                     <h5 class="card-title text-center" style="font-size: 2rem;">{{categorias[i + offset].nombreCategoria}}</h5>
                                 </div>
@@ -38,6 +39,7 @@
             </button>
             </div>
     </div>
+</div>
 </div>
 }
 </div>
