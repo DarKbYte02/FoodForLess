@@ -5,7 +5,7 @@ import { Lugar } from '../../lugar';
 import { HeaderComponent } from "../../shared/header/header.component";
 import { FooterComponent } from "../../shared/footer/footer.component";
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router} from '@angular/router';
 
 @Component({
   selector: 'app-places',
@@ -17,6 +17,7 @@ import { RouterModule } from '@angular/router';
 export class PlacesComponent {
   private cookieService = inject(CookieService);
   private lugarService = inject(PlaceService);
+  private router = inject(Router);
   userId:string = this.cookieService.get('userId');
   lugares: Lugar[] = [];
 
@@ -32,6 +33,11 @@ export class PlacesComponent {
   }
   
 deletePlace(id:any){
-  console.log(id);
+  this.lugarService.delete(id).subscribe((response: any) => {
+    alert('Lugar eliminado');
+    window.location.reload();
+    this.router.navigate(['places']);
+
+  });
 }
 }

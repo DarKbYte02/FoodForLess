@@ -1,8 +1,8 @@
 <app-header/>
-    <div class="container-fluid" style="min-height: 100vh;">
-        <div class="row orange" style="overflow: hidden;">
+    <div class="container-fluid orange" style="min-height: 100vh;">
+        <div class="row" style="overflow: hidden; margin-bottom: 15%;">
             <div class="col-6 text-center" style="margin-top: 5%; margin-left: 25%; max-width: 50%;">
-                <p class="title text-center"><strong>Editar Lugar</strong></p>
+                <p class="title text-center"><strong>Agregar Lugar</strong></p>
                 <div class="card">
                     <div class="card-body">
                     <form [formGroup]="placeForm" (ngSubmit)="onSubmit()" class="d-flex">
@@ -41,7 +41,7 @@
                             <label for="password" class="textForm" style="font-size: 1.3rem; color: #524e4e; font-family: 'Mada';">Calificación</label>
                             <input type="text" id="cali" class="form-control" formControlName="calificacion">
                         </div>
-                        <button type="submit" class="btn btn-primary" style="margin-top: 5%; width: 100%;"><strong> Actualizar datos</strong></button>
+                        <button type="submit" class="btn btn-success" style="margin-top: 5%; width: 100%;"><strong> Agregar lugar</strong></button>
                         </div>
             
                         <!-- Sección derecha: Imagen de perfil -->
@@ -50,7 +50,7 @@
                         <div class="profile-image-container mb-4">
             
                             <img 
-                            src='{{lugar.imagenLugar}}'  
+                            src='https://media.admagazine.com/photos/651aeed9da5f4d9a3844a94b/16:9/w_1280,c_limit/Porten%CC%83o-restaurante-1.jpg'  
                             alt="Imagen de perfil" 
                             class="img-fluid float-start"
                             
@@ -73,5 +73,6 @@
                 </div>
                 </div>
             </div>
+            <br/>
     </div>
 <app-footer/>

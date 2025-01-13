@@ -18,6 +18,8 @@ export class PlaceDetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
   private lugarService = inject(PlaceService);
   private router = inject(Router);
+  calificacionLugar: number = 0;
+  
   lugarId: number = 0;
   lugar: Lugar = new Lugar();
   nuevoLugar : Lugar = new Lugar();
@@ -49,6 +51,7 @@ export class PlaceDetailsComponent {
         calificacion: String(this.lugar.calificacionTotal),
         imagen: this.lugar.imagenLugar
       });
+      this.calificacionLugar = Number(this.lugar.calificacionTotal);
       this.placeForm.get('calificacion')?.disable();
     });
 
@@ -64,14 +67,15 @@ export class PlaceDetailsComponent {
     this.nuevoLugar.longitudLugar = Number(this.placeForm.value.longitud);
     this.nuevoLugar.horaApertura = Number(this.placeForm.value.horaApertura);
     this.nuevoLugar.horaCierre = Number(this.placeForm.value.horaCierre);
-    this.nuevoLugar.calificacionTotal = Number(this.placeForm.value.calificacion);
+    this.nuevoLugar.calificacionTotal = this.calificacionLugar;
     this.nuevoLugar.imagenLugar = this.placeForm.value.imagen!;
     this.nuevoLugar.user = this.lugar.user.idUser;
     this.nuevoLugar.idLugar = this.lugar.idLugar;
     console.log(this.nuevoLugar);
     this.lugarService.update(this.nuevoLugar).subscribe((response: any) => {
       console.log(response);
+      alert('Lugar actualizado');
+      this.router.navigate(['/places']);
     });
-    this.router.navigate(['/places']);
   }
 }
