@@ -17,7 +17,7 @@ export class ArticuloService {
         return this.http.post('http://localhost:8080/articulo', articulo);
     }
     update(articulo: any) {
-        return this.http.put(`http://localhost:8080/articulo/${articulo.id}`, articulo);
+        return this.http.put(`http://localhost:8080/articulo/${articulo.idArticulo}`, articulo);
     }
     delete(id: number) {
         return this.http.delete(`http://localhost:8080/articulo/${id}`);

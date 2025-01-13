@@ -3,11 +3,18 @@
         <div class="row">
             <div class="col-12" style="background-color: #F17228;">
                 <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
-                        <h1 style="font-family: 'Mada'; color: white;"><strong>Mis lugares</strong></h1>
+                        <h1 style="font-family: 'Mada'; color: white;"><strong>{{nombreLugar}}</strong></h1>
                 </div>
             </div>
         </div>
-        @if(lugares.length > 0){
+        @if(articulos.length > 0){
+            <div class="row">
+                <div class="col-12" style="background-color: #FFB30B;">
+                    <div style="text-align: center; margin-bottom: 0%; margin-top: 1%;">
+                            <h1 style="font-family: 'Mada'; color: white; font-size: 2rem;"><strong>Artículos</strong></h1>
+                    </div>
+                </div>
+            </div>
             <div class="row align-items-center">
                 <div class="col-1">
                     <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
@@ -26,12 +33,12 @@
                 </div>
                 <div class="col-3">
                     <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
-                        <p style="font-size: 2rem; font-family: 'Mada';"><strong>Dirección</strong></p>
+                        <p style="font-size: 2rem; font-family: 'Mada';"><strong>Cantidad</strong></p>
                     </div>
                 </div>
                 <div class="col-1">
                     <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
-                        <p style="font-size: 2rem; font-family: 'Mada';"><strong>Calificación</strong></p>                    
+                        <p style="font-size: 2rem; font-family: 'Mada';"><strong>Precio</strong></p>                    
                     </div>
                 </div>
                 <div class="col-2">
@@ -40,40 +47,38 @@
                     </div>
                 </div>
             </div>
-        @for(place of lugares; track place.idLugar){
+        @for(articulo of articulos; track articulo.idArticulo){
         <div class="row align-items-center" style="margin-top: 0%; border-top: 0.5px solid #393939; border-bottom: 0.5px solid #393939" >
             <div class="col-1" >
                 <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
-                        <a style="font-family: 'Mada'; color: black;" [routerLink]="['listItems',place.idLugar]" class="btn btn-outline-primary" >{{place.idLugar}}</a>
+                        <p style="font-family: 'Mada'; color: black;"><strong> {{articulo.idArticulo}}</strong></p>
                 </div>
             </div>            
 
             <div class="col-2">
                 <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
-                        <p style="font-family: 'Mada'; color: black;"class="fw-light">{{place.nombreLugar}}</p>
+                        <p style="font-family: 'Mada'; color: black;"class="fw-light">{{articulo.nombreArticulo}}</p>
                 </div>
             </div>
             <div class="col-3">
                 <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
-                    <p style="font-family: 'Mada'; color: black;"class="fw-light">{{place.descripcionLugar}}</p>                
+                    <p style="font-family: 'Mada'; color: black;"class="fw-light">{{articulo.descripcionArticulo}}</p>                
                 </div>
             </div>
             <div class="col-3">
                 <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
-                        <p style="font-family: 'Mada';" class="fw-light">{{place.direccionLugar}}</p>
+                        <p style="font-family: 'Mada';" class="fw-light">{{articulo.stock}}</p>
                 </div>
             </div>
             <div class="col-1">
                 <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
-                        <p style="font-family: 'Mada'; color: black;"class="fw-light">{{place.calificacionTotal}}</p>
+                        <p style="font-family: 'Mada'; color: black;"class="fw-light">${{articulo.precioArticulo}}</p>
                 </div>
             </div>
 
             <div class="col-2">
-                    <button class="btn btn-danger" style="margin-right: 2%;" (click)="deletePlace(place.idLugar)">Eliminar</button>
-                    <button class="btn btn-warning"style="margin-right: 2%;" [routerLink]="['edit',place.idLugar]">Editar</button>
-                    <button class="btn btn-primary"style="margin-right: 2%;" [routerLink]="['addItem',place.idLugar]">+</button>
-                
+                    <button class="btn btn-danger" style="margin-right: 2%;" (click)="deleteItem(articulo.idArticulo)">Eliminar</button>
+                    <button class="btn btn-warning"style="margin-right: 2%;" [routerLink]="['edit',articulo.idArticulo]">Editar</button>
             </div>
 
         </div>
@@ -81,13 +86,19 @@
 }
 @else{
     <div class="col-12" style="text-align: center; margin-top: 22%;">
-        <h1 style="font-family: 'Mada'; color: #393939;">No hay lugares</h1>
-        <h3 style="font-family: 'Mada'; color: #393939;">Registra tu restaurante o local</h3>
+        <h1 style="font-family: 'Mada'; color: #393939;">No hay artículos</h1>
+        <h3 style="font-family: 'Mada'; color: #393939;">Registra tu primer artículo</h3>
     </div>
 }
     <div class="row" style="margin-top: 5%; margin-bottom: 5%; margin-left: 5%;"  >
         <div class="col-2">
-            <a  class="btn btn-success " style="margin-top: 2%;" [routerLink]="['add']"><strong>Añadir lugar</strong></a>
+            <button class="btn btn-primary"style="margin-right: 2%;" [routerLink]="['/places/addItem',idLugar]">Agregar item</button>        </div>
+    </div>
+    <div class="row">
+        <div class="col-12" style="background-color: #FFB30B;">
+            <div style="text-align: center; margin-bottom: 0%; margin-top: 1%;">
+                    <h1 style="font-family: 'Mada'; color: white; font-size: 2rem;"><strong>Pedidos</strong></h1>
+            </div>
         </div>
     </div>
 </div>

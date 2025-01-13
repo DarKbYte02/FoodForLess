@@ -13,6 +13,8 @@ import { PlaceDetailsComponent } from './place-details/place-details/place-detai
 import { AdminPanelComponent } from './admin-panel/admin-panel/admin-panel.component';
 import { AddPlaceComponent } from './add-place/add-place/add-place.component';
 import { AddItemComponent } from './add-item/add-item/add-item.component';
+import { ListItemsComponent } from './listItems/list-items/list-items.component';
+import { ModifyItemComponent } from './modifyItem/modify-item/modify-item.component';
 
 const routeConfig: Routes = [
     {
@@ -69,6 +71,16 @@ const routeConfig: Routes = [
       path: 'places/addItem/:id',
       component: AddItemComponent,
       title: 'Agregar lugar',
+    },
+    {
+      path: 'places/listItems/:id',
+      component: ListItemsComponent,
+      title: 'Artículos por lugar',
+    },
+    {
+      path: 'places/listItems/:id/edit/:itemID',
+      component: ModifyItemComponent,
+      title: 'Modificar artículo',
     },
     {
       path: 'categories/:id',

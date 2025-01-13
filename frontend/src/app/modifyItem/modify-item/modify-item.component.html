@@ -2,7 +2,7 @@
     <div class="container-fluid orange" style="min-height: 100vh;">
         <div class="row" style="overflow: hidden; margin-bottom: 15%;">
             <div class="col-6 text-center" style="margin-top: 5%; margin-left: 25%; max-width: 50%;">
-                <p class="title text-center"><strong>Agregar artículo</strong></p>
+                <p class="title text-center"><strong>Modificar artículo</strong></p>
                 <div class="card">
                     <div class="card-body">
                     <form [formGroup]="itemForm" (ngSubmit)="onSubmit()" class="d-flex">
@@ -46,7 +46,7 @@
                         </select>
                     </div>
                         
-                        <button type="submit" class="btn btn-success" style="margin-top: 5%; width: 100%;"><strong> Agregar artículo</strong></button>
+                        <button type="submit" class="btn btn-warning" style="margin-top: 5%; width: 100%;"><strong> Modificar artículo</strong></button>
                         </div>
             
                         <!-- Sección derecha: Imagen de perfil -->
@@ -55,7 +55,7 @@
                         <div class="profile-image-container mb-4">
             
                             <img 
-                            src='https://media.admagazine.com/photos/651aeed9da5f4d9a3844a94b/16:9/w_1280,c_limit/Porten%CC%83o-restaurante-1.jpg'  
+                            src='{{articulo.imagenArticulo}}'  
                             alt="Imagen de perfil" 
                             class="img-fluid float-start"
                             

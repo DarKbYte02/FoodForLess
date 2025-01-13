@@ -7,8 +7,8 @@ export class Articulo{
     imagenArticulo: string;
     tiempoInicial: any;
     tiempoFinal: any;
-    idCategoria: number;
-    idLugar: any;
+    idCategoria?: number;
+    idLugar?: any;
     lugar?: any;
     categoria: any = {};
 }
