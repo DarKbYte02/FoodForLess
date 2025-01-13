@@ -21,22 +21,23 @@ public class LugarService {
 
     public void deleteLugar(Long id) {
         // Delete a lugar
+        if (id <= 0 || lugarRepository.findById(id).isEmpty()) {
+            throw new IllegalArgumentException("Lugar inválido");
+        }
         lugarRepository.deleteById(id);
     }
 
     public Lugar getLugar(Long id) {
         // Get a lugar
+        if (id <= 0 || lugarRepository.findById(id).isEmpty()) {
+            throw new IllegalArgumentException("Lugar no encontrado");
+        }
         return lugarRepository.findById(id).orElse(null);
     }
 
     public List<Lugar> getLugares() {
         // Get all lugares
         return lugarRepository.findAll();
-    }
-
-    public void updateLugar(Lugar lugar) {
-        // Update a lugar
-        lugarRepository.save(lugar);
     }
 
 }
