@@ -46,6 +46,7 @@ public class DetallePedidoController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public DetallePedido updateDetallePedido(@PathVariable Long id, @RequestBody DetallePedido detallePedido) {
+        detallePedido.setIdDetallePedido(id);
         DetallePedido updatedDetallePedido = detallePedidoService.updateDetallePedido(detallePedido);
         return updatedDetallePedido;
     }
