@@ -25,7 +25,6 @@ public class DetallePedido implements Serializable {
     private int cantidadPedido;
 
     @Column(name="precioPedido", nullable = false)
-    @NotBlank(message = "El precio del pedido es requerido")
     private double precioPedido;
 
     //IdArticulo

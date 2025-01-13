@@ -37,10 +37,13 @@ public class PedidoController {
         pedidoService.deletePedido(id);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void updatePedido(@RequestBody Pedido pedido) {
+    public void updatePedido(@PathVariable Long id,@RequestBody Pedido pedido) {
         // Update an existing pedido
+        if (!id.equals(pedido.getIdPedido())) {
+            throw new IllegalArgumentException("El ID de la URL y el ID del cuerpo no coinciden");
+        }
         pedidoService.updatePedido(pedido);
     }
 
