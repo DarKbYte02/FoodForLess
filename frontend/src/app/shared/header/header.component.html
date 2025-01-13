@@ -34,6 +34,9 @@
                             <li><a class="dropdown-item" (click)="logOut()">Cerrar Sesión</a></li>
                             <li><a class="dropdown-item" href="orders">Mis pedidos</a></li>
                             <li><a class="dropdown-item" href="places">Administrar lugares</a></li>
+                            @if( userId == 5 || userId == 6 || userId == 3){
+                                <li><a class="dropdown-item" href="admin">Panel de administrador</a></li>
+                            }
                         </ul>
                         </div>
                 }

@@ -1,0 +1,77 @@
+<app-header/>
+    <div class="container-fluid" style="min-height: 100vh;">
+        <div class="row orange" style="overflow: hidden;">
+            <div class="col-6 text-center" style="margin-top: 5%; margin-left: 25%; max-width: 50%;">
+                <p class="title text-center"><strong>Editar Lugar</strong></p>
+                <div class="card">
+                    <div class="card-body">
+                    <form [formGroup]="placeForm" (ngSubmit)="onSubmit()" class="d-flex">
+                        <!-- Sección izquierda: Información de la cuenta -->
+                        <div class="form-left col-6" style="text-align: start;">
+                        <p class="textForm text-center" style="font-size: 1.6rem; color: #524e4e; font-family: 'Mada';"><strong> Información de lugar</strong></p>
+                        <div class="form-group" style="margin-bottom: 8%;">
+                            <label for="name" class="textForm" style="font-size: 1.3rem; color: #524e4e; font-family: 'Mada';">Nombre</label>
+                            <input type="text" class="form-control" id="name" formControlName="nombre" />
+                        </div>
+                        <div class="form-group" style="margin-bottom: 8%;">
+                            <label for="email" class="textForm" style="font-size: 1.3rem; color: #524e4e; font-family: 'Mada';">Descripción</label>
+                            <input  class="form-control" id="desc" formControlName="descripcion" />
+                        </div>
+                        <div class="form-group" style="margin-bottom: 8%;">
+                            <label for="password" class="textForm" style="font-size: 1.3rem; color: #524e4e; font-family: 'Mada';">Dirección</label>
+                            <input  id="direcc" class="form-control" formControlName="direccion">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 8%;">
+                            <label for="password" style="font-size: 1.3rem; color: #524e4e; font-family: 'Mada';">Latitud</label>
+                            <input type="number" id="lat" class="form-control" formControlName="latitud">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 8%;">
+                            <label for="password" class="textForm" style="font-size: 1.3rem; color: #524e4e; font-family: 'Mada';">Longitud</label>
+                            <input type="number" id="lon" class="form-control" formControlName="longitud">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 8%;">
+                            <label for="password" class="textForm" style="font-size: 1.3rem; color: #524e4e; font-family: 'Mada';">Apertura</label>
+                            <input type="number" id="apert" class="form-control" formControlName="horaApertura">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 8%;">
+                            <label for="password" class="textForm" style="font-size: 1.3rem; color: #524e4e; font-family: 'Mada';">Cierre</label>
+                            <input type="number" id="cierr" class="form-control" formControlName="horaCierre">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 8%;">
+                            <label for="password" class="textForm" style="font-size: 1.3rem; color: #524e4e; font-family: 'Mada';">Calificación</label>
+                            <input type="text" id="cali" class="form-control" formControlName="calificacion">
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="margin-top: 5%; width: 100%;"><strong> Actualizar datos</strong></button>
+                        </div>
+            
+                        <!-- Sección derecha: Imagen de perfil -->
+                        <div class="form-right col-6 text-center" style="margin-top: 8%;">
+                        <p class="textForm text-center" style="font-size: 1.2rem; color: #524e4e; font-family: 'Mada'; margin-bottom: 10%;"><strong>Imagen de Lugar</strong></p>
+                        <div class="profile-image-container mb-4">
+            
+                            <img 
+                            src='{{lugar.imagenLugar}}'  
+                            alt="Imagen de perfil" 
+                            class="img-fluid float-start"
+                            
+                            />
+                            
+                        </div>
+                        <div class="form-group" style="text-align: start;">
+                            <label for="image" class="textForm" style="font-size: 1.2rem; color: #524e4e; font-family: 'Mada';">Enlace de la Imagen</label>
+                            <input 
+                            type="text" 
+                            class="form-control" 
+                            id="image" 
+                            formControlName="imagen"
+                            placeholder="Introduce el enlace de la imagen"
+                            />
+                        </div>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+                </div>
+            </div>
+    </div>
+<app-footer/>

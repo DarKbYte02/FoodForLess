@@ -18,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity 
+@Entity
 @Table(name="Articulo",schema = "public")
 public class Articulo implements Serializable {
     @Id

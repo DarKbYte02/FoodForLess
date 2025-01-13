@@ -9,5 +9,5 @@ export class Lugar {
     horaApertura: number;
     horaCierre: number;
     calificacionTotal: number;
-    user:any;
+    user:any ;
 }

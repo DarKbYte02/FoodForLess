@@ -1,0 +1,70 @@
+.title {
+    color: #FFFFFF;
+    font-size: 4.7rem;
+    overflow: hidden;
+    font-family: 'Mada';
+  }
+  
+  .title1 {
+    color: #fefcf4;
+    font-size: 4.5rem;
+    overflow: hidden;
+    font-family: 'Mada';
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 50%;
+    opacity: 1.0;
+  }
+  
+  .orange {
+    background-color: #F17228;
+    min-width: 100vw;
+    min-height: 100vh;
+  }
+  
+  .textForm {
+    font-family: 'Mada';
+    font-size: 1.5rem;
+  }
+  
+  .profile-image-container {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+  
+  .profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Esto asegura que la imagen cubra completamente el círculo */
+  }
+  
+  
+  button {
+    width: 100%;
+  }
+  .profile-icon {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+  
+  .profile-image {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background-color: #f3f3f3;
+  }
+  
+  .form-left {
+    padding-right: 2rem; /* Añade un espacio en el lado derecho */
+  }
+  
+  .form-right {
+    padding-left: 2rem; /* Añade un espacio en el lado izquierdo */
+  }

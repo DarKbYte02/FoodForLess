@@ -17,7 +17,7 @@ export class PlaceService {
         return this.http.post('http://localhost:8080/lugar', place);
     }
     update(place: any) {
-        return this.http.put(`http://localhost:8080/lugar/${place.id}`, place);
+        return this.http.put(`http://localhost:8080/lugar/${place.idLugar}`, place);
     }
     delete(id: number) {
         return this.http.delete(`http://localhost:8080/lugar/${id}`);

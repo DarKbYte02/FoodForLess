@@ -45,7 +45,25 @@ public class ArticuloController{
             throw new IllegalArgumentException("El ID de la URL y el ID del cuerpo no coinciden");
         }
         try {
-            articuloService.updateArticulo(articulo);
+            Articulo existingArticulo = articuloRepository.findById(articulo.getIdArticulo()).orElseThrow(() -> new EntityNotFoundException("Articulo no encontrado"));
+            existingArticulo.setNombreArticulo(articulo.getNombreArticulo());
+            existingArticulo.setDescripcionArticulo(articulo.getDescripcionArticulo());
+            existingArticulo.setPrecioArticulo(articulo.getPrecioArticulo());
+            existingArticulo.setImagenArticulo(articulo.getImagenArticulo());
+            existingArticulo.setCategoria(articulo.getCategoria().getIdCategoria());
+            existingArticulo.setStock(articulo.getStock());
+            existingArticulo.setTiempoInicial(articulo.getTiempoInicial());
+            existingArticulo.setTiempoFinal(articulo.getTiempoFinal());
+            existingArticulo.setLugar(articulo.getLugar().getIdLugar());
+
+            if(articulo.getDetallePedidos() != null){
+                existingArticulo.getDetallePedidos().clear();
+                existingArticulo.getDetallePedidos().addAll(articulo.getDetallePedidos());
+            }
+
+            articuloRepository.save(existingArticulo);
+
+            //articuloService.updateArticulo(articulo);
         }catch (EntityNotFoundException e){
             throw new EntityNotFoundException("Articulo no encontrado");
         }

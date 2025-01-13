@@ -44,22 +44,18 @@ public class Lugar implements Serializable {
 
     @Column(name="latitudLugar", nullable = false)
     @NotNull(message = "La latitud del lugar no puede ser nula")
-    @NotBlank(message = "La latitud del lugar no puede estar vacia")
     private double latitudLugar;
 
     @Column(name="longitudLugar", nullable = false)
     @NotNull(message = "La longitud del lugar no puede ser nula")
-    @NotBlank(message = "La longitud del lugar no puede estar vacia")
     private double longitudLugar;
 
     @Column(name="horaApertura", nullable = false)
     @NotNull(message = "La hora de apertura del lugar no puede ser nula")
-    @NotBlank(message = "La hora de apertura del lugar no puede estar vacia")
     private int horaApertura;
 
     @Column(name="horaCierre", nullable = false)
     @NotNull(message = "La hora de cierre del lugar no puede ser nula")
-    @NotBlank(message = "La hora de cierre del lugar no puede estar vacia")
     private int horaCierre;
 
     @Column(name="calificacionTotal", nullable = false)
