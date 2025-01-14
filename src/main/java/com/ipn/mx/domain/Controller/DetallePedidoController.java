@@ -15,6 +15,7 @@ import java.util.List;
 @RequestMapping(value = "/detallePedido", produces = MediaType.APPLICATION_JSON_VALUE)
 public class DetallePedidoController {
     private final DetallePedidoService detallePedidoService;
+    private final com.ipn.mx.domain.Repository.DetallePedidoRepository detallePedidoRepository;
 
     @PostMapping
     public ResponseEntity<DetallePedido> createDetallePedido(@RequestBody DetallePedido detallePedido) {
@@ -46,8 +47,17 @@ public class DetallePedidoController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public DetallePedido updateDetallePedido(@PathVariable Long id, @RequestBody DetallePedido detallePedido) {
-        detallePedido.setIdDetallePedido(id);
-        DetallePedido updatedDetallePedido = detallePedidoService.updateDetallePedido(detallePedido);
+        DetallePedido existingDetallePedido = detallePedidoService.getDetallePedido(id);
+        if (!id.equals(detallePedido.getIdDetallePedido())) {
+            throw new IllegalArgumentException("El ID de la URL y el ID del cuerpo no coinciden");
+        }
+        existingDetallePedido.setIdDetallePedido(detallePedido.getIdDetallePedido());
+        existingDetallePedido.setCantidadPedido(detallePedido.getCantidadPedido());
+        existingDetallePedido.setPrecioPedido(detallePedido.getPrecioPedido());
+        existingDetallePedido.setPedido(detallePedido.getPedido().getIdPedido());
+        existingDetallePedido.setArticulo(detallePedido.getArticulo().getIdArticulo());
+        DetallePedido updatedDetallePedido = detallePedidoRepository.save(existingDetallePedido);
+        //DetallePedido updatedDetallePedido = detallePedidoService.updateDetallePedido(detallePedido);
         return updatedDetallePedido;
     }
 

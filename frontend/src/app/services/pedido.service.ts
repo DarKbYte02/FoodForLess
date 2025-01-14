@@ -17,10 +17,10 @@ export class PedidoService {
         return this.http.post('http://localhost:8080/pedido', pedido);
     }
     update(pedido: any) {
-        return this.http.put(`http://localhost:8080/lugar/${pedido.id}`, pedido);
+        return this.http.put(`http://localhost:8080/pedido/${pedido.idPedido}`, pedido);
     }
     delete(id: number) {
-        return this.http.delete(`http://localhost:8080/lugar/${id}`);
+        return this.http.delete(`http://localhost:8080/pedido/${id}`);
     }
     
 }

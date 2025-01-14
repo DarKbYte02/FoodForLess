@@ -15,6 +15,8 @@ import { AddPlaceComponent } from './add-place/add-place/add-place.component';
 import { AddItemComponent } from './add-item/add-item/add-item.component';
 import { ListItemsComponent } from './listItems/list-items/list-items.component';
 import { ModifyItemComponent } from './modifyItem/modify-item/modify-item.component';
+import { DetailsOrderComponent } from './detailsOrder/details-order/details-order.component';
+import { EditOrderComponent } from './editOrder/edit-order/edit-order.component';
 
 const routeConfig: Routes = [
     {
@@ -51,6 +53,16 @@ const routeConfig: Routes = [
       path: 'orders',
       component: OrdersComponent,
       title: 'Órdenes',
+    },
+    {
+      path: 'orders/details/:id',
+      component: DetailsOrderComponent,
+      title: 'Detalles de orden',
+    },
+    {
+      path: 'orders/edit/:id',
+      component: EditOrderComponent,
+      title: 'Editar orden',
     },
     {
       path: 'places',

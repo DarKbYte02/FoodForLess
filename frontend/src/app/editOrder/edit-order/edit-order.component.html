@@ -1,0 +1,46 @@
+<app-header/>
+    <div class="container-fluid orange" style="min-height: 100vh;">
+        <div class="row" style="overflow: hidden; margin-bottom: 15%;">
+            <div class="col-12 text-center" style="margin-top: 5%; margin-left: 25%; max-width: 50%;">
+                <p class="title text-center"><strong>Modificar pedido</strong></p>
+                <div class="card">
+                    <div class="card-body">
+                    <form [formGroup]="nuevoPedidoYDetalle" (ngSubmit)="onSubmit()" class="d-flex">
+                        <!-- Sección izquierda: Información de la cuenta -->
+                        <div class="form-left col-12" style="text-align: start;">
+                        <p class="textForm text-center" style="font-size: 1.6rem; color: #524e4e; font-family: 'Mada';"><strong> Información del pedido</strong></p>
+                        <div class="form-group" style="margin-bottom: 8%;">
+                            <label for="name" class="textForm" style="font-size: 1.3rem; color: #524e4e; font-family: 'Mada';">Estado</label>
+                            <select class="form-select" aria-label="Default select example" formControlName="estadoPedido">
+                                <option selected>Selecciona un estado</option>
+                                
+                                <option value="1">Procesando</option>
+                                <option value="2">Entregado</option>
+                                <option value="3">Cancelado</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group" style="margin-bottom: 8%;">
+                            <label for="email" class="textForm" style="font-size: 1.3rem; color: #524e4e; font-family: 'Mada';">Cantidad</label>
+                            <input  class="form-control" id="desc" formControlName="cantidadPedido" />
+                        </div>
+                        <div class="form-group" style="margin-bottom: 8%;">
+                            <label for="password" class="textForm" style="font-size: 1.3rem; color: #524e4e; font-family: 'Mada';">Total</label>
+                            <input  id="direcc" type="number" class="form-control" formControlName="totalPedido">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 8%;">
+                            <label for="password" style="font-size: 1.3rem; color: #524e4e; font-family: 'Mada';">Precio unitario</label>
+                            <input type="number" id="lat" class="form-control" formControlName="precioUnitario">
+                        </div>
+                        
+                        
+                        <button type="submit" class="btn btn-success" style="margin-top: 5%; width: 100%;"><strong> Modificar pedido</strong></button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <br/>
+    </div>
+<app-footer/>

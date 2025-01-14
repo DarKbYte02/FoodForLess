@@ -15,6 +15,7 @@ import java.util.List;
 @RequestMapping("/pedido")
 public class PedidoController {
     private final PedidoService pedidoService;
+    private final com.ipn.mx.domain.Repository.PedidoRepository pedidoRepository;
 
     @PostMapping
     public ResponseEntity<String> createPedido(@RequestBody Pedido pedido) {
@@ -44,7 +45,19 @@ public class PedidoController {
         if (!id.equals(pedido.getIdPedido())) {
             throw new IllegalArgumentException("El ID de la URL y el ID del cuerpo no coinciden");
         }
-        pedidoService.updatePedido(pedido);
+        Pedido existingPedido = pedidoService.getPedido(id);
+        existingPedido.setEstadoPedido(pedido.getEstadoPedido());
+        existingPedido.setTotalPedido(pedido.getTotalPedido());
+        if(pedido.getDetallePedidos() != null){
+            existingPedido.setDetallePedidos(pedido.getDetallePedidos());
+        }
+        existingPedido.setLugar(pedido.getLugar().getIdLugar());
+        existingPedido.setUser(pedido.getUser().getIdUser());
+        if(pedido.getReviews() != null){
+            existingPedido.setReviews(pedido.getReviews());
+        }
+        pedidoRepository.save(existingPedido);
+        //pedidoService.updatePedido(pedido);
     }
 
     @GetMapping
