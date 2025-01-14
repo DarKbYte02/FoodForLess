@@ -47,10 +47,12 @@ public class DetallePedidoController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public DetallePedido updateDetallePedido(@PathVariable Long id, @RequestBody DetallePedido detallePedido) {
-        DetallePedido existingDetallePedido = detallePedidoService.getDetallePedido(id);
+
         if (!id.equals(detallePedido.getIdDetallePedido())) {
-            throw new IllegalArgumentException("El ID de la URL y el ID del cuerpo no coinciden");
+            System.out.println(detallePedido.getIdDetallePedido());
+            throw new IllegalArgumentException("El ID de la URL y el ID del cuerpo no coinciden"+ id + " " + detallePedido);
         }
+        DetallePedido existingDetallePedido = detallePedidoService.getDetallePedido(id);
         existingDetallePedido.setIdDetallePedido(detallePedido.getIdDetallePedido());
         existingDetallePedido.setCantidadPedido(detallePedido.getCantidadPedido());
         existingDetallePedido.setPrecioPedido(detallePedido.getPrecioPedido());

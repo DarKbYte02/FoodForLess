@@ -56,6 +56,7 @@ export class ListItemsComponent {
     }
     //console.log(this.pedidos);
     this.detallePedido.list().subscribe((response: any) => {
+      if(response.length > 0){
       console.log(response);
       this.detalle = response;
       for(let i=0; i< this.pedidos.length; i++){
@@ -65,8 +66,9 @@ export class ListItemsComponent {
         }
       }
       console.log(this.detailedMap);
-      
+    }
     });
+    
   });
 
 

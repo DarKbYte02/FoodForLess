@@ -13,6 +13,9 @@ export class DetallePedidoService {
     get(id: number) {
         return this.http.get(`http://localhost:8080/detallePedido/${id}`);
     }
+    getByOrderID(id: number) {
+        return this.http.get(`http://localhost:8080/detallePedido/pedido/${id}`);
+    }
     create(detallePedido: any) {
         return this.http.post('http://localhost:8080/detallePedido', detallePedido);
     }

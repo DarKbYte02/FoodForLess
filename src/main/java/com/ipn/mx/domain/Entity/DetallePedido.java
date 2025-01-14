@@ -17,7 +17,6 @@ import java.io.Serializable;
 public class DetallePedido implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long idDetallePedido;
 
     @Column(name="cantidadPedido", nullable = false)

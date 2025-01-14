@@ -12,11 +12,23 @@
                         <div class="form-group" style="margin-bottom: 8%;">
                             <label for="name" class="textForm" style="font-size: 1.3rem; color: #524e4e; font-family: 'Mada';">Estado</label>
                             <select class="form-select" aria-label="Default select example" formControlName="estadoPedido">
-                                <option selected>Selecciona un estado</option>
+                                <option selected value = "{{pedido.estadoPedido}}">
+                                    @switch (pedido.estadoPedido.toString()){
+                                        @case ("0") {
+                                            Procesando
+                                        }
+                                        @case ("1") {
+                                            Entregado
+                                        }
+                                        @case ("2") {
+                                            Cancelado
+                                        }
+                                    }
+                                </option>
                                 
-                                <option value="1">Procesando</option>
-                                <option value="2">Entregado</option>
-                                <option value="3">Cancelado</option>
+                                <option value="0">Procesando</option>
+                                <option value="1">Entregado</option>
+                                <option value="2">Cancelado</option>
                             </select>
                         </div>
                         
@@ -32,8 +44,6 @@
                             <label for="password" style="font-size: 1.3rem; color: #524e4e; font-family: 'Mada';">Precio unitario</label>
                             <input type="number" id="lat" class="form-control" formControlName="precioUnitario">
                         </div>
-                        
-                        
                         <button type="submit" class="btn btn-success" style="margin-top: 5%; width: 100%;"><strong> Modificar pedido</strong></button>
                         </div>
                     </form>
