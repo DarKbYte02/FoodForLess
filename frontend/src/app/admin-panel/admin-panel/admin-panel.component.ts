@@ -52,4 +52,16 @@ deletePlace(id: number) {
     window.location.reload();
   });
 }
+
+deleteUser(id: number) {
+  this.usuarioService.delete(id).subscribe((response: any) => {
+    alert('Usuario eliminado');
+    window.location.reload();
+  });
+}
+deleteCategory(id: number) {
+  this.categoriaService.delete(id).subscribe((response: any) => {});
+  alert('Categoría eliminada');
+  window.location.reload();
+}
 }

@@ -1,1 +1,48 @@
-<p>edit-categoria works!</p>
+<app-header/>
+    <div class="container-fluid" style="min-height: 100vh; background-color: #F17228;">
+        <div class="row">
+            <div class="col-12 text-center" style="margin-top: 2%;">
+                <h1 class="title text" style="color: white;">
+                    <strong>Agregar Categoría</strong>
+                </h1>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 5%;">
+            <div class="col-6 text-center" style="margin-top: 5%; margin-left: 25%; max-width: 50%;">
+                <div class="card">
+                  <div class="card-body">
+                    <form [formGroup]="categoriaForm" (ngSubmit)="editarCategoria()" class="d-flex">
+                      <!-- Sección izquierda: Información de la cuenta -->
+                      <div class="form-left col-6" style="text-align: start;">
+                        <p class="textForm text-center" style="font-size: 1.6rem; color: #524e4e; font-family: 'Mada';"><strong> Información de la categoría</strong></p>
+                        <div class="form-group" style="margin-bottom: 8%;">
+                          <label for="name" class="textForm" style="font-size: 1.3rem; color: #524e4e; font-family: 'Mada';">Nombre Categoría</label>
+                           <input type="text" class="form-control" id="name" formControlName="nombreCategoria" />
+                        </div>                    
+                        <div class="form-group" style="margin-bottom: 8%;">
+                            <label for="password" class="textForm" style="font-size: 1.3rem; color: #524e4e; font-family: 'Mada';">Imagen</label>
+                            <input type="text" id="password" class="form-control" formControlName="imagenCategoria">
+                          </div>
+                          <button type="submit" class="btn btn-primary" style="font-family: 'Mada';">Editar Categoría</button>
+                        </div>
+                      <!-- Sección derecha: Imagen de perfil -->
+                      <div class="form-right col-6 text-center" style="margin-top: 8%;">
+                        <p class="textForm text-center" style="font-size: 1.2rem; color: #524e4e; font-family: 'Mada'; margin-bottom: 10%;"><strong>Imagen la categoría</strong></p>
+                        <div class="profile-image-container mb-4">
+            
+                          <img 
+                            src='{{categoria.imagenCategoria}}'  
+                            alt="Imagen de perfil" 
+                            class="img-fluid float-start"
+                            
+                          />
+                          
+                        </div>
+                      </div>
+                  </form>
+                </div>
+              </div>
+        </div>
+    </div>
+    </div>
+<app-footer/>
