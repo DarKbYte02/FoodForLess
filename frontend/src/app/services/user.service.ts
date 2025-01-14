@@ -12,23 +12,23 @@ export class UserService {
       });
 
     list() {
-        return this.http.get('http://localhost:8080/user');
+        return this.http.get('https://foodforless-latest.onrender.com/user');
     }
     get(id: number) {
-        return this.http.get(`http://localhost:8080/user/${id}`);
+        return this.http.get(`https://foodforless-latest.onrender.com/user/${id}`);
     }
     getHashedPassword(correo: any) {
-        return this.http.get(`http://localhost:8080/user/correo/${correo}`);
+        return this.http.get(`https://foodforless-latest.onrender.com/user/correo/${correo}`);
     }
     create(user: User) {
         console.log(user);
-        return this.http.post('http://localhost:8080/user', user);
+        return this.http.post('https://foodforless-latest.onrender.com/user', user);
     }
     update(user: any) {
-        return this.http.put(`http://localhost:8080/user/${user.idUser}`, user);
+        return this.http.put(`https://foodforless-latest.onrender.com/user/${user.idUser}`, user);
     }
     delete(id: number) {
-        return this.http.delete(`http://localhost:8080/user/${id}`);
+        return this.http.delete(`https://foodforless-latest.onrender.com/user/${id}`);
     }
     
 }

@@ -8,19 +8,19 @@ export class PlaceService {
     private http = inject(HttpClient);
 
     list() {
-        return this.http.get('http://localhost:8080/lugar');
+        return this.http.get('https://foodforless-latest.onrender.com/lugar');
     }
     get(id: number) {
-        return this.http.get(`http://localhost:8080/lugar/${id}`);
+        return this.http.get(`https://foodforless-latest.onrender.com/lugar/${id}`);
     }
     create(place: any) {
-        return this.http.post('http://localhost:8080/lugar', place);
+        return this.http.post('https://foodforless-latest.onrender.com/lugar', place);
     }
     update(place: any) {
-        return this.http.put(`http://localhost:8080/lugar/${place.idLugar}`, place);
+        return this.http.put(`https://foodforless-latest.onrender.com/lugar/${place.idLugar}`, place);
     }
     delete(id: number) {
-        return this.http.delete(`http://localhost:8080/lugar/${id}`);
+        return this.http.delete(`https://foodforless-latest.onrender.com/lugar/${id}`);
     }
     
 }

@@ -8,22 +8,22 @@ export class ArticuloService {
     private http = inject(HttpClient);
 
     list() {
-        return this.http.get('http://localhost:8080/articulo');
+        return this.http.get('https://foodforless-latest.onrender.com/articulo');
     }
     get(id: number) {
-        return this.http.get(`http://localhost:8080/articulo/${id}`);
+        return this.http.get(`https://foodforless-latest.onrender.com/articulo/${id}`);
     }
     create(articulo: any) {
-        return this.http.post('http://localhost:8080/articulo', articulo);
+        return this.http.post('https://foodforless-latest.onrender.com/articulo', articulo);
     }
     update(articulo: any) {
-        return this.http.put(`http://localhost:8080/articulo/${articulo.idArticulo}`, articulo);
+        return this.http.put(`https://foodforless-latest.onrender.com/articulo/${articulo.idArticulo}`, articulo);
     }
     delete(id: number) {
-        return this.http.delete(`http://localhost:8080/articulo/${id}`);
+        return this.http.delete(`https://foodforless-latest.onrender.com/articulo/${id}`);
     }
     listByCategory(id: number) {
-        return this.http.get(`http://localhost:8080/articulo/categoria/${id}`);
+        return this.http.get(`https://foodforless-latest.onrender.com/articulo/categoria/${id}`);
     }
     
 }
