@@ -1,5 +1,5 @@
 import { Component,inject,OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { Articulo } from '../../articulo';
 import { ArticuloService } from '../../services/articulo.service';
 import { HeaderComponent } from "../../shared/header/header.component";
@@ -22,6 +22,7 @@ import { DetallePedidoService } from '../../services/detallePedido.service';
 })
 export class ListingDetailsComponent implements OnInit {
   route: ActivatedRoute = inject(ActivatedRoute);
+  router: Router = inject(Router);
   private articuloService = inject(ArticuloService);
   private cookieService = inject(CookieService);
   private pedidoService = inject(PedidoService);
@@ -31,6 +32,7 @@ export class ListingDetailsComponent implements OnInit {
   articulo: Articulo = new Articulo();
   lugar: Lugar = new Lugar();
   pedidos: Pedido[] = [];
+  articulo1 : Articulo = new Articulo();
 
   bookingForm = new FormGroup({
     cantidad : new FormControl(''),
@@ -99,8 +101,9 @@ export class ListingDetailsComponent implements OnInit {
                 detallePedido.pedido = this.pedidos[i].idPedido;
                 console.log(detallePedido);
                 this.detallePedido.create(detallePedido).subscribe((response: any) => {
-                  alert('Pedido realizado con éxito');
+                  
                   this.actualizarStock(this.articulo.idArticulo,pedidoCantidad);
+                  
                 });
               }
             }
@@ -114,5 +117,17 @@ export class ListingDetailsComponent implements OnInit {
 
   actualizarStock(idArticulo: number, cantidad: number){
       console.log(idArticulo,cantidad);
+      this.articuloService.get(idArticulo).subscribe((response: any) => {
+        this.articulo1 = response;
+        this.articulo1.stock = this.articulo1.stock - cantidad;
+        this.articulo1.categoria = this.articulo1.categoria.idCategoria;
+        this.articulo1.lugar = this.articulo1.lugar.idLugar;
+        this.articuloService.update(this.articulo1).subscribe((response: any) => {
+          alert('Pedido realizado con éxito');
+          this.router.navigate(['/orders']);
+        });
+        //console.log(this.articulo1);
+        //this.router.navigate(['/orders']);
+      });
   }
 }

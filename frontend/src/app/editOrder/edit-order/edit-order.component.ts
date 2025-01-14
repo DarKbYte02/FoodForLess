@@ -8,6 +8,8 @@ import { DetallePedidoService } from '../../services/detallePedido.service';
 import { RouterModule,ActivatedRoute,Router } from '@angular/router';
 import { Pedido } from '../../pedido';
 import { DetallePedido } from '../../detallePedido';
+import { ArticuloService } from '../../services/articulo.service';
+import { Articulo } from '../../articulo';
 
 @Component({
   selector: 'app-edit-order',
@@ -20,10 +22,12 @@ export class EditOrderComponent {
   private pedidoService = inject(PedidoService);
   private detallePedidoService = inject(DetallePedidoService);
   private router = inject(Router);
-  
+  private articuloService = inject(ArticuloService);
 
   pedido: Pedido = new Pedido();
   private detallePedido = new DetallePedido();
+  articulo1 : Articulo = new Articulo();
+  
 
   private routeID: number = 0;
 
@@ -40,13 +44,13 @@ export class EditOrderComponent {
 
   constructor() { 
     this.pedidoService.get(Number(this.route.snapshot.paramMap.get('id'))).subscribe((response1: any) => {
-        console.log(response1);
+        //console.log(response1);
         this.routeID = response1.lugar.idLugar;
         this.pedido = response1;
           this.detallePedidoService.getByOrderID(Number(this.route.snapshot.paramMap.get('id'))).subscribe((response: any) => {
 
             this.detallePedido= response[0];
-            //console.log(this.detallePedido);
+            console.log(this.detallePedido);
 
             this.nuevoPedidoYDetalle.setValue({
               estadoPedido: response1.estadoPedido,
@@ -70,21 +74,47 @@ export class EditOrderComponent {
     //console.log(this.pedido);
 
     this.pedido.estadoPedido = Number(this.nuevoPedidoYDetalle.value.estadoPedido);
+    let x = Number(this.nuevoPedidoYDetalle.value.cantidadPedido);
+    let y = this.detallePedido.cantidadPedido;
+
     this.detallePedido.cantidadPedido = Number(this.nuevoPedidoYDetalle.value.cantidadPedido);
+
+    let diff = x - y;
 
     this.pedido.lugar = this.pedido.lugar.idLugar;
     this.pedido.user = this.pedido.user.idUser;
 
     this.detallePedido.pedido = this.pedido.idPedido;
     this.detallePedido.articulo = this.detallePedido.articulo.idArticulo;
+    this.pedido.totalPedido = this.detallePedido.cantidadPedido * this.detallePedido.precioPedido;
 
     console.log(this.detallePedido);
 
     this.pedidoService.update(this.pedido).subscribe((response: any) => {
       this.detallePedidoService.update(this.detallePedido).subscribe((response: any) => {
         alert('Pedido modificado');
+        this.actualizarStock(this.detallePedido.articulo, diff);
         this.router.navigate(['/']);
       });
     });
   }
+
+
+  actualizarStock(idArticulo: number, cantidad: number){
+    console.log(idArticulo,cantidad);
+    this.articuloService.get(idArticulo).subscribe((response: any) => {
+      this.articulo1 = response;
+      this.articulo1.stock = this.articulo1.stock - cantidad;
+      this.articulo1.categoria = this.articulo1.categoria.idCategoria;
+      this.articulo1.lugar = this.articulo1.lugar.idLugar;
+      if(this.articulo1.stock >= 0){
+      this.articuloService.update(this.articulo1).subscribe((response: any) => {
+        //alert('Pedido realizado con éxito');
+        //this.router.navigate(['/orders']);
+      });
+    }
+      //console.log(this.articulo1);
+      //this.router.navigate(['/orders']);
+    });
+}
 }
