@@ -17,6 +17,10 @@ import { ListItemsComponent } from './listItems/list-items/list-items.component'
 import { ModifyItemComponent } from './modifyItem/modify-item/modify-item.component';
 import { DetailsOrderComponent } from './detailsOrder/details-order/details-order.component';
 import { EditOrderComponent } from './editOrder/edit-order/edit-order.component';
+import { ViewProfileComponent } from './viewProfile/view-profile/view-profile.component';
+import { EditProfileComponent } from './editProfile/edit-profile/edit-profile.component';
+import { AddCategoriaComponent } from './add-categoria/add-categoria.component';
+import { EditCategoriaComponent } from './edit-categoria/edit-categoria.component';
 
 const routeConfig: Routes = [
     {
@@ -103,6 +107,26 @@ const routeConfig: Routes = [
       path: 'admin',
       component: AdminPanelComponent,
       title: 'Panel de administrador',
-    }
+    },
+    {
+      path: 'admin/viewProfile/:id',
+      component: ViewProfileComponent,
+      title: 'Ver perfil',
+    },
+    {
+      path: 'admin/editProfile/:id',
+      component: EditProfileComponent,
+      title: 'Editar perfil',
+    },
+    {
+      path: 'admin/addCategoria',
+      component: AddCategoriaComponent,
+      title: 'Agregar categoría',
+    },
+    {
+      path: 'admin/editCategoria/:id',
+      component: EditCategoriaComponent,
+      title: 'Editar categoría',
+    },
   ];
   export default routeConfig;

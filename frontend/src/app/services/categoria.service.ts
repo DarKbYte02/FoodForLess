@@ -17,7 +17,7 @@ export class CategoriaService {
         return this.http.post('http://localhost:8080/categoria', categoria);
     }
     update(categoria: any) {
-        return this.http.put(`http://localhost:8080/categoria/${categoria.id}`, categoria);
+        return this.http.put(`http://localhost:8080/categoria/${categoria.idCategoria}`, categoria);
     }
     delete(id: number) {
         return this.http.delete(`http://localhost:8080/categoria/${id}`);

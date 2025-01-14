@@ -1,1 +1,192 @@
-<p>admin-panel works!</p>
+<app-header/>
+@if(userId == 5){
+<div class="container-fluid">
+    <div class="row text-center">
+        <div class="col-12" style="background-color: #FFB30B;">
+        <h1 class="title text-center" style="margin-top: 2%;"><strong>Panel de administración</strong></h1>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-12" style="background-color: #F17228;">
+        <p class="title text-center" style="font-size: 2rem;"><strong>Usuarios</strong></p>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 1%; background-color: white;">
+        <div class="col-1">
+            <div style="text-align: center; margin-bottom: 1%; margin-top: 1%;">
+                <p style="font-size: 2rem; font-family: 'Mada';"><strong>Id</strong></p>                    
+            </div>
+        </div>
+        <div class="col-4">
+            <div style="text-align: center; margin-bottom: 1%; margin-top: 1%;">
+                <p style="font-size: 2rem; font-family: 'Mada';"><strong>Nombre</strong></p>                    
+            </div>
+        </div>
+        <div class="col-3">
+            <div style="text-align: center; margin-bottom: 1%; margin-top: 1%;">
+                <p style="font-size: 2rem; font-family: 'Mada';"><strong>Correo</strong></p>                    
+            </div>
+        </div>
+        <div class="col-4">
+            <div style="text-align: center; margin-bottom: 1%; margin-top: 1%;">
+                <p style="font-size: 2rem; font-family: 'Mada';"><strong>Acciones</strong></p>                    
+            </div>
+        </div>
+    </div>
+    @for(usuario of usuarios; track usuario.idUser){
+        <div class="row align-items-center" style="margin-top: 0%; border-top: 0.5px solid #393939; border-bottom: 0.5px solid #393939" >
+            <div class="col-1" >
+                <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
+                    <p style="font-family: 'Mada'; color: black;">
+                        <strong> 
+                            <a class="btn btn-outline-primary" style="font-family: 'Mada';" [routerLink]="['viewProfile',usuario.idUser]">{{usuario.idUser}}</a>
+                        </strong>
+                    </p>
+                </div>
+            </div>    
+            <div class="col-4">
+                <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
+                    <p style="font-family: 'Mada'; color: black;">{{usuario.nombreUsuario}}</p>
+                </div>
+            </div>
+            <div class="col-3">
+                <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
+                    <p style="font-family: 'Mada'; color: black;" class="fw-light">{{usuario.correoUsuario}}</p>
+                </div>
+            </div>
+            <div class="col-4">
+                <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
+                    <a [routerLink]="['editProfile',usuario.idUser]" class="btn btn-warning" style="font-family: 'Mada'; margin-right: 2%;">Editar</a>
+                    <a class="btn btn-danger" style="font-family: 'Mada'; margin-right: 2%;">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="row text-center" style="background-color: #F17228;">
+        <div class="col-12" style="background-color: #F17228; margin-top: 1%; margin-bottom: 2%;">
+        <p class="title text-center" style="font-size: 2rem;"><strong>Lugares</strong></p>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 1%; background-color: white;">
+        <div class="col-1">
+            <div style="text-align: center; margin-bottom: 1%; margin-top: 1%;">
+                <p style="font-size: 2rem; font-family: 'Mada';"><strong>Id</strong></p>                    
+            </div>
+        </div>
+        <div class="col-4">
+            <div style="text-align: center; margin-bottom: 1%; margin-top: 1%;">
+                <p style="font-size: 2rem; font-family: 'Mada';"><strong>Nombre</strong></p>                    
+            </div>
+        </div>
+        <div class="col-3">
+            <div style="text-align: center; margin-bottom: 1%; margin-top: 1%;">
+                <p style="font-size: 2rem; font-family: 'Mada';"><strong>Dirección</strong></p>                    
+            </div>
+        </div>
+        <div class="col-4">
+            <div style="text-align: center; margin-bottom: 1%; margin-top: 1%;">
+                <p style="font-size: 2rem; font-family: 'Mada';"><strong>Acciones</strong></p>                    
+            </div>
+        </div>
+    </div>
+    @for(lugar1 of lugares; track lugar1.idLugar){
+        <div class="row align-items-center" style="margin-top: 0%; border-top: 0.5px solid #393939; border-bottom: 0.5px solid #393939" >
+            <div class="col-1" >
+                <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
+                    <p style="font-family: 'Mada'; color: black;">
+                        <strong> 
+                            <a class="btn btn-outline-primary" style="font-family: 'Mada';" [routerLink]="['/places/listItems',lugar1.idLugar]">{{lugar1.idLugar}}</a>
+                        </strong>
+                    </p>
+                </div>
+            </div>    
+            <div class="col-4">
+                <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
+                    <p style="font-family: 'Mada'; color: black;">{{lugar1.nombreLugar}}</p>
+                </div>
+            </div>
+            <div class="col-3">
+                <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
+                    <p style="font-family: 'Mada'; color: black;" class="fw-light">{{lugar1.direccionLugar}}</p>
+                </div>
+            </div>
+            <div class="col-4">
+                <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
+                    <a [routerLink]="['/places/edit',lugar1.idLugar]" class="btn btn-warning" style="font-family: 'Mada'; margin-right: 2%;">Editar</a>
+                    <a class="btn btn-danger" style="font-family: 'Mada'; margin-right: 2%;" (click)="deletePlace(lugar1.idLugar)">Eliminar</a>
+                    <a class="btn btn-primary"style="margin-right: 2%;" [routerLink]="['/places/addItem',lugar1.idLugar]">+</a>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="row text-center" style="background-color: #F17228;">
+        <div class="col-12" style="background-color: #F17228; margin-top: 1%; margin-bottom: 2%;">
+        <p class="title text-center" style="font-size: 2rem;"><strong>Categorías</strong></p>
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: 1%; background-color: white;">
+    <div class="col-1">
+        <div style="text-align: center; margin-bottom: 1%; margin-top: 1%;">
+            <p style="font-size: 2rem; font-family: 'Mada';"><strong>Id</strong></p>                    
+        </div>
+    </div>
+    <div class="col-4">
+        <div style="text-align: center; margin-bottom: 1%; margin-top: 1%;">
+            <p style="font-size: 2rem; font-family: 'Mada';"><strong>Nombre</strong></p>                    
+        </div>
+    </div>
+    <div class="col-3">
+        <div style="text-align: center; margin-bottom: 1%; margin-top: 1%;">
+            <p style="font-size: 2rem; font-family: 'Mada';"><strong>Imagen</strong></p>                    
+        </div>
+    </div>
+    <div class="col-4">
+        <div style="text-align: center; margin-bottom: 1%; margin-top: 1%;">
+            <p style="font-size: 2rem; font-family: 'Mada';"><strong>Acciones</strong></p>                    
+        </div>
+    </div>
+</div>
+@for(categoria of categorias; track categoria.idCategoria){
+    <div class="row align-items-center" style="margin-top: 0%; border-top: 0.5px solid #393939; border-bottom: 0.5px solid #393939" >
+        <div class="col-1" >
+            <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
+                <p style="font-family: 'Mada'; color: black;">
+                    <strong> 
+                        <p style="font-family: 'Mada';">{{categoria.idCategoria}}</p>
+                    </strong>
+                </p>
+            </div>
+        </div>    
+        <div class="col-4">
+            <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
+                <p style="font-family: 'Mada'; color: black;">{{categoria.nombreCategoria}}</p>
+            </div>
+        </div>
+        <div class="col-3">
+            <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
+                <img src="{{categoria.imagenCategoria}}" alt="Imagen de la categoría" style="width: 50px; height: 50px;">
+            </div>
+        </div>
+        <div class="col-4">
+            <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
+                <a [routerLink]="['editCategoria',categoria.idCategoria]" class="btn btn-warning" style="font-family: 'Mada'; margin-right: 2%;">Editar</a>
+                <a class="btn btn-danger" style="font-family: 'Mada'; margin-right: 2%;">Eliminar</a>
+            </div>
+        </div>
+
+    </div>
+}
+<div class="row text-center">
+    <div class="col-4" style=" margin-top: 1%; margin-bottom: 2%; margin-left: 2%;">
+        <button class="btn btn-primary" [routerLink]="['addCategoria']" style="max-width: 50%;">Agregar categoría</button>
+    </div>
+</div>
+}@else{
+    <div class="container-fluid orange">
+        <h1 class="title text-center" style="margin-top: 2%;">
+            <p style="margin-top: 30%;"><strong>Acceso denegado</strong></p>
+        </h1>
+    </div> 
+}
+<app-footer/>
