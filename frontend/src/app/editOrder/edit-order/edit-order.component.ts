@@ -1,10 +1,11 @@
 import { Component,inject } from '@angular/core';
+import { Location } from '@angular/common';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { FormsModule, ReactiveFormsModule, FormGroup,FormControl } from '@angular/forms';
 import { PedidoService } from '../../services/pedido.service';
 import { DetallePedidoService } from '../../services/detallePedido.service';
-import { RouterModule,ActivatedRoute } from '@angular/router';
+import { RouterModule,ActivatedRoute,Router } from '@angular/router';
 import { Pedido } from '../../pedido';
 import { DetallePedido } from '../../detallePedido';
 
@@ -18,12 +19,13 @@ export class EditOrderComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
   private pedidoService = inject(PedidoService);
   private detallePedidoService = inject(DetallePedidoService);
+  private router = inject(Router);
+  
 
   pedido: Pedido = new Pedido();
   private detallePedido = new DetallePedido();
 
-  private pedidoId: number = 0;
-  private detalleId: number = 0;
+  private routeID: number = 0;
 
   totalPedidoFinal: number = 0;
   precioUnitarioFinal : number = 0;
@@ -39,6 +41,7 @@ export class EditOrderComponent {
   constructor() { 
     this.pedidoService.get(Number(this.route.snapshot.paramMap.get('id'))).subscribe((response1: any) => {
         console.log(response1);
+        this.routeID = response1.lugar.idLugar;
         this.pedido = response1;
           this.detallePedidoService.getByOrderID(Number(this.route.snapshot.paramMap.get('id'))).subscribe((response: any) => {
 
@@ -78,14 +81,10 @@ export class EditOrderComponent {
     console.log(this.detallePedido);
 
     this.pedidoService.update(this.pedido).subscribe((response: any) => {
-
+      this.detallePedidoService.update(this.detallePedido).subscribe((response: any) => {
+        alert('Pedido modificado');
+        this.router.navigate(['/']);
+      });
     });
-
-    this.detallePedidoService.update(this.detallePedido).subscribe((response: any) => {
-
-    });
-
-    alert('Pedido modificado');
-
   }
 }

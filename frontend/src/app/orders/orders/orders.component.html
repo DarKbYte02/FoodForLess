@@ -11,60 +11,137 @@
         <div class="row align-items-center">
             <div class="col-1">
                 <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
-                    <p style="font-size: 2rem; font-family: 'Mada';"><strong>Id</strong></p>
+                    <p style="font-size: 2rem; font-family: 'Mada';"><strong>Id</strong></p>                    
                 </div>
             </div>
-            <div class="col-3">
-                <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
-                    <p style="font-size: 2rem; font-family: 'Mada';"><strong>Total</strong></p>
-                </div>
-            </div>
-            <div class="col-3">
+            <div class="col-2">
                 <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
                     <p style="font-size: 2rem; font-family: 'Mada';"><strong>Estado</strong></p>
                 </div>
             </div>
             <div class="col-2">
                 <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
-                    <p style="font-family: 'Mada'; font-size: 2rem; "><strong>Acciones</strong></p>
+                    <p style="font-size: 2rem; font-family: 'Mada';"><strong>Total</strong></p>
+                </div>
+            </div>
+            <div class="col-2">
+                <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
+                    <p style="font-size: 2rem; font-family: 'Mada';"><strong>Cantidad</strong></p>
+                </div>
+            </div>
+            <div class="col-2">
+                <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
+                    <p style="font-size: 2rem; font-family: 'Mada';"><strong>Artículo</strong></p>                    
+                </div>
+            </div>
+            <div class="col-3">
+                <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
+                        <p style="font-family: 'Mada'; font-size: 2rem; "><strong>Acciones</strong></p>
                 </div>
             </div>
         </div>
-        @for(order of pedidos; track order.idPedido){
-            <div class="row align-items-center" style="margin-top: 0%; border-top: 0.5px solid #393939; border-bottom: 0.5px solid #393939" >
+    
+        @for(pedido of pedidos; track pedido.idPedido){
+            <div class="row align-items-center" style="margin-bottom: 5%;">
                 <div class="col-1" >
                     <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
-                        <a style="font-family: 'Mada'; color: black;" [routerLink]="['listItems',order.idPedido]" class="btn btn-outline-primary" >{{order.idPedido}}</a>
+                            <p style="font-family: 'Mada'; color: black;"><strong> {{pedido.idPedido}}</strong></p>
                     </div>
-                </div>
-                <div class="col-3">
+                </div>    
+                <div class="col-2">
                     <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
-                        <p style="font-family: 'Mada'; color: black;"class="fw-light">{{order.totalPedido}}</p>
-                    </div>
+                    @switch (pedido.estadoPedido) {
+                        
+                        @case (0) {
+                            <span class="badge bg-warning fw-medium" style="font-family: 'Mada'; color: black;" >Pendiente</span>
+                        }
+                        
+                        @case (1) {
+                            <span class="badge bg-success fw-medium" style="font-family: 'Mada'; color: black;">Entregado</span>
+                        }
+                        
+                        @case (2) {
+                            <span class="badge bg-danger fw-medium" style="font-family: 'Mada'; color: black;">Cancelado</span>
+                        }
+                    }
                 </div>
-                <div class="col-3">
+                </div>
+                <div class="col-2">
+                <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
+                    <p style="font-family: 'Mada'; color: black;"class="fw-light">$ {{pedido.totalPedido}} </p>
+                </div>
+                </div>
+                <div class="col-2">
+                    @for(detalles of detalle; track detalles.idDetallePedido){
+                        @if(detalles.pedido.idPedido === pedido.idPedido){
+                            <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
+                                <p style="font-family: 'Mada'; color: black;"class="fw-light">{{detalles.cantidadPedido}}</p>
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="col-2">
                     <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
-                        <p style="font-family: 'Mada';" class="fw-light">{{order.estadoPedido}}</p>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <button class="btn btn-danger" style="margin-right: 2%;" (click)="deleteOrder(order.idPedido)">Eliminar</button>
-                    <button class="btn btn-warning"style="margin-right: 2%;" [routerLink]="['edit',order.idPedido]">Editar</button>
-                    <button class="btn btn-primary"style="margin-right: 2%;" [routerLink]="['addItem',order.idPedido]">+</button>
-                </div>
+                        @for(detalles of detalle; track detalles.idDetallePedido){
+                            <!--
+                            @for(articulo of articulos; track articulo.idArticulo){
+                                @if(articulo.idArticulo === detalles.articulo.idArticulo){
+                                    <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
+                                        <p style="font-family: 'Mada'; color: black;"class="fw-light">{{articulo.nombreArticulo}}</p>
+                                    </div>
+                                }
+                            }-->
+                            @if(detalles.pedido.idPedido === pedido.idPedido){
+                                @for(articulo of articulos; track articulo.idArticulo){
+                                    @if(articulo.idArticulo === detalles.articulo.idArticulo){
+                                        <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
+                                            <p style="font-family: 'Mada'; color: black;"class="fw-light">{{articulo.nombreArticulo}}</p>
+                                        </div>
+                                    }
+                                }
+                            }
+                           
+                    } 
 
+                      </div>
+          
+                </div>
+    
+                <div class="col-3">
+                    @switch (pedido.estadoPedido) {
+                        @case(0){
+                        <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
+                            <button class="btn btn-danger" style="margin-right: 2%;" (click)="cancelOrder(pedido.idPedido)">Cancelar</button>
+                            <button class="btn btn-warning"style="margin-right: 2%;" [routerLink]="['/orders/edit',pedido.idPedido]">Editar</button>
+                            <button class="btn btn-success" style="margin-right: 2%;" (click)="finishOrder(pedido.idPedido)">Finalizar</button>
+
+                        </div>
+                        }
+                        @case(1){
+                            <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
+                                Sin acciones
+                            </div>
+                        }
+                        @case(2){
+                            <div style="text-align: center; margin-bottom: 3%; margin-top: 3%;">
+                                Sin acciones
+                        </div>
+                        }
+                    }
+                </div>
+    
             </div>
         }
     }
     @else{
-        <div class="col-12" style="text-align: center; margin-top: 22%;">
+        <div class="col-12" style="text-align: center; margin-top: 15%;">
             <h1 style="font-family: 'Mada'; color: #393939;">No hay pedidos</h1>
-            <h3 style="font-family: 'Mada'; color: #393939;">Añade artículos al carrito de compras</h3>
+            <h3 style="font-family: 'Mada'; color: #393939;">Realiza un pedido</h3>
         </div>
     }
     <div class="row" style="margin-top: 5%; margin-bottom: 5%; margin-left: 5%;"  >
         <div class="col-2">
-            <a  class="btn btn-success " style="margin-top: 2%;" [routerLink]="['add']"><strong>Añadir pedido</strong></a>
+            <a  class="btn btn-success " style="margin-top: 2%;" [routerLink]="['/listing']"><strong>Explorar</strong></a>
         </div>
     </div>
 </div>

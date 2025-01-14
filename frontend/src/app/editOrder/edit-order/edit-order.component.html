@@ -9,28 +9,7 @@
                         <!-- Sección izquierda: Información de la cuenta -->
                         <div class="form-left col-12" style="text-align: start;">
                         <p class="textForm text-center" style="font-size: 1.6rem; color: #524e4e; font-family: 'Mada';"><strong> Información del pedido</strong></p>
-                        <div class="form-group" style="margin-bottom: 8%;">
-                            <label for="name" class="textForm" style="font-size: 1.3rem; color: #524e4e; font-family: 'Mada';">Estado</label>
-                            <select class="form-select" aria-label="Default select example" formControlName="estadoPedido">
-                                <option selected value = "{{pedido.estadoPedido}}">
-                                    @switch (pedido.estadoPedido.toString()){
-                                        @case ("0") {
-                                            Procesando
-                                        }
-                                        @case ("1") {
-                                            Entregado
-                                        }
-                                        @case ("2") {
-                                            Cancelado
-                                        }
-                                    }
-                                </option>
-                                
-                                <option value="0">Procesando</option>
-                                <option value="1">Entregado</option>
-                                <option value="2">Cancelado</option>
-                            </select>
-                        </div>
+
                         
                         <div class="form-group" style="margin-bottom: 8%;">
                             <label for="email" class="textForm" style="font-size: 1.3rem; color: #524e4e; font-family: 'Mada';">Cantidad</label>
